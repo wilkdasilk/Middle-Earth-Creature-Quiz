@@ -21,15 +21,31 @@ console.log("sanity check: JS connected!");
       <div class="creature"><h1>You are a HOBBIT!</h1></div>
       <div class="userData">
         <form>
-          <label>Name</label><input type="text"></input>
-          <label>City</label><input type="text"></input>
-          <label>Age</label><input type="text"></input>
-          <label>Gender</label><input type="radio" value="male"><input type="radio" value="female"></input>
-          <label>Favorite Color</label><input type="text"></input>
-          <label>Favorite Food</label><input type="text"></input>
-          <label>Weapon Name</label><input type="text"></input>
+          <div class="row">
+            <div class="col-md-3"><label>Name</label></div><div class="col-md-3"><input type="text"></input></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><label>City</label></div><div class="col-md-3"><input type="text"></input></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><label>Age</label></div><div class="col-md-3"><input type="text"></input></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><label>Gender</label></div><div class="col-md-3"><input type="radio" value="male">Male <input type="radio" value="female">Female</input></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><label>Favorite Color</label></div><div class="col-md-3"><input type="text"></input></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text"></input></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"><label>Weapon Name</label></div><div class="col-md-3"><input type="text"></input></div>
+          </div>
           <input type="hidden" name="creature" value="hobbit"></input>
-          <input type="submit"></input>
+          <div class="row">
+            <div class="col-md-3"><input type="submit"></input></div>
+          </div>
         </form>
       </div>
       `);
