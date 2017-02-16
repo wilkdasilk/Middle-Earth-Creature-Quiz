@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var Creature = require("./creature");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
@@ -9,7 +8,10 @@ var UserSchema = new Schema({
 	gender: String,
 	favoriteColor: String,
 	favoriteFood: String,
-	creature: [Creature.schema]
+	creature: {
+    	type: Schema.Types.ObjectId,
+    	ref: 'Creature'
+  	}
 });
 
 var User = mongoose.model('User', UserSchema);
