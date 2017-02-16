@@ -25,6 +25,7 @@ sampleUsers.push({
 var sampleCreatures = [];
 
 sampleCreatures.push({
+	imageUrl: "https://i.ytimg.com/vi/j-CtdZVZbcI/maxresdefault.jpg",
 	creatureType: "Hobbit",
 	description: "Hobbits are small creatures that can be mistaken for young children. They love comfort and food and a good pipe. Although not accustomed to adventure, they can be both clever and surprisingly courageous, and also make great thieves as they are quiet and can sneak around unnoticed.",
 	madlib: "Enter madlib here!!"
