@@ -21,6 +21,8 @@ var controllers = require('./controllers');
  * ROUTES *
  **********/
 
+ app.get('/api', controllers.api.index);
+
 /*
  * HTML Endpoints
  */
