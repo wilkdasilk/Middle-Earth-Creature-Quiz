@@ -1,6 +1,7 @@
 console.log("sanity check: JS connected!");
 
-  $(document).ready(
+  $(document).ready(function(){
+    
     var takeQuiz = $('button');
     takeQuiz.click(function(event){
       clearPage();
@@ -11,4 +12,4 @@ console.log("sanity check: JS connected!");
     $('.container.main-content').html("");
   }
 
-);
+});
