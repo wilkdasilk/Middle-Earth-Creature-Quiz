@@ -17,8 +17,11 @@ console.log("sanity check: JS connected!");
 
   function loadCreaturePage(){
     mainDiv.append(`
-      <img class="creature" src='https://i.ytimg.com/vi/j-CtdZVZbcI/maxresdefault.jpg'>
-      <div class="creature"><h1>You are a HOBBIT!</h1></div>
+      <div class="creature">
+        <img src='https://i.ytimg.com/vi/j-CtdZVZbcI/maxresdefault.jpg'>
+        <h1>You are a HOBBIT!</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras malesuada erat diam, et scelerisque massa tincidunt quis. Nulla finibus convallis sem eget ornare. Fusce aliquet massa at quam tincidunt ultricies. Morbi tristique, lectus in ultrices ultricies, lacus felis semper erat, id euismod urna enim sit amet augue. Etiam tincidunt imperdiet ipsum ut maximus. Curabitur at risus vulputate nisl sollicitudin consectetur vel quis nulla.</p>
+      </div>
       <div class="userData">
         <form>
           <div class="row">
