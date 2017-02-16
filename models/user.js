@@ -4,6 +4,11 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
 	name: String,
+	city: String,
+	age: Number,
+	gender: String,
+	favoriteColor: String,
+	favoriteFood: String,
 	creature: [Creature.schema]
 });
 
