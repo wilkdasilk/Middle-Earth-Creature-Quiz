@@ -1,5 +1,6 @@
 var db = require('../models');
 
+//find all users
 function index(req, res){
   db.User.find({}, function(err, users) {
     if (err){
@@ -10,6 +11,7 @@ function index(req, res){
   });
 }
 
+//find user by id
 function search(req,res){
   db.User.findById(req.params.id, function(err, user){
     if (err){
@@ -20,6 +22,7 @@ function search(req,res){
   });
 }
 
+//create a new user and save
 function add(req,res){
   var age = parseInt(req.body.age);
   req.body.age = age;
@@ -46,6 +49,8 @@ function add(req,res){
   });
 
 }
+
+
 
 module.exports = {
   index: index,
