@@ -23,6 +23,8 @@ var controllers = require('./controllers');
 
  app.get('/api', controllers.api.index);
 
+ app.get('api/users', controllers.users.index);
+
 /*
  * HTML Endpoints
  */
