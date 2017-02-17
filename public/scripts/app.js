@@ -4,17 +4,19 @@ console.log("sanity check: JS connected!");
 
     var $mainDiv = $('.container.main-content');
 
+    //After button is clicked, the page clears and loads a question
     var takeQuiz = $('button');
     takeQuiz.click(function(event){
       clearPage();
       loadQuestion();
     });
 
-
+  //Function to clear the page
   function clearPage(){
     $mainDiv.html("");
   }
 
+  //Appends the result and form to the page
   function loadCreaturePage(){
     $mainDiv.append(`
       <div class="creature">
@@ -49,6 +51,7 @@ console.log("sanity check: JS connected!");
         </form>
       </div>
       `);
+
       var $form = $('form');
       $form.on('submit', function(event){
         event.preventDefault();
@@ -74,6 +77,7 @@ console.log("sanity check: JS connected!");
     $('.userData').append(`<p>${newUser.name}</p>`);
   }
 
+  //Appends the question and answer choices to the page
   function loadQuestion(){
     $mainDiv.append(`
 
