@@ -32,6 +32,11 @@ function index(req, res){
     method: "DELETE",
     path: "api/users/:id",
     desciption: "remove a user from the database by ID"
+  },
+  {
+    method: "GET",
+    path: "api/creatures",
+    description: "returns all creatures"
   }]
   });
 };
