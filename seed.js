@@ -33,3 +33,50 @@ sampleCreatures.push({
 	madlib: "Enter madlib here!!"
 });
 
+
+
+
+//Template from Books App
+db.Creature.remove({}, function(err, creatures) {
+  console.log('removed all creatures');
+  db.Creature.create(sampleCreatures, function(err,creatures){
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log('recreated all creatures');
+    console.log("created", creatures.length, "creatures");
+
+
+    db.User.remove({}, function(err, users){
+      console.log('removed all users');   
+      sampleUsers.forEach(function (userData) {
+        var user = new db.User({
+          name: userData.name,
+          city: userData.city,
+		  age: userData.age,
+		  gender: userData.gender,
+		  favoriteColor: userData.favoriteColor,
+		  favoriteFood: userData.favoriteFood
+        });
+        db.Creature.findOne({creatureType: userData.creature}, function (err, foundCreature) {
+          console.log('found creature ' + foundCreature.creatureType + ' for user ' + user.name);
+          if (err) {
+            console.log(err);
+            return;
+          }
+          user.creature = foundCreature;
+          user.save(function(err, savedUser){
+            if (err) {
+              return console.log(err);
+            }
+            console.log('saved ' + savedUser.creature + ' by ' + foundCreature.creatureType);
+          });
+        });
+      });
+    });
+
+  });
+});
+
+
