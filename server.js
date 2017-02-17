@@ -25,6 +25,8 @@ var controllers = require('./controllers');
 
  app.get('/api/users', controllers.users.index);
 
+ app.get('/api/users/:id', controllers.users.search);
+
 /*
  * HTML Endpoints
  */

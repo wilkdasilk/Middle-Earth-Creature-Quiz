@@ -10,6 +10,18 @@ function index(req, res){
   });
 }
 
+function search(req,res){
+  db.User.findById(req.params.id, function(err, user){
+    if (err){
+      console.log(err);
+      res.sendStatus(204);
+    }
+    res.json(user)
+  });
+}
+
 module.exports = {
-  index: index
+  index: index,
+  search:search
+
 };
