@@ -101,7 +101,16 @@ console.log("sanity check: JS connected!");
     function renderUser(user) {
 
   	  $(".allUsers").append(
-  	  	`<div class="userOnPage"><p>${user.name}</p></div>`);
+  	  	`<div class="userOnPage">
+  	  		<div>
+  	  			<img src="#">
+  	  		</div>
+  	  		<p>${user.name}</p>
+  	  		<p>${user.creature}</p> 
+  	  		<button>delete</button>
+  	  		<button>edit</button>
+  	  	</div>`
+  	  	);
     }
   }  
 
