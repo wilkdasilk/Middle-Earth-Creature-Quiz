@@ -1,6 +1,6 @@
 var db = require('../models');
 
-//FIND ALL users
+//FIND ALL users and return as JSON
 function index(req, res){
   db.User.find({}, function(err, users) {
     if (err){
@@ -11,7 +11,7 @@ function index(req, res){
   });
 }
 
-//FIND user by id
+//FIND one user by id and return as JSON
 function search(req,res){
   db.User.findById(req.params.id, function(err, user){
     if (err){
@@ -22,7 +22,7 @@ function search(req,res){
   });
 }
 
-//CREATE a new user and save
+//CREATE one new user and save, return as JSON
 function add(req,res){
   var age = parseInt(req.body.age);
   req.body.age = age;
@@ -50,10 +50,11 @@ function add(req,res){
 
 }
 
-// DELETE a user by id
+// DELETE one user by id and return as JSON
 function destroy(req, res) {
-  // find one user by id, delete it, and send it back as JSON
-
+  db.User.findOneAndRemove({ _id: req.params.id }, function(err, foundUser){
+    res.json(foundUser);
+  });
 }
 
 // UPDATE a user by id
