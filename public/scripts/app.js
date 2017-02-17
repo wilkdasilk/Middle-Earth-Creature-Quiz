@@ -12,7 +12,7 @@ console.log("sanity check: JS connected!");
 
 
   function clearPage(){
-    $mainDiv.html("");
+    $mainDiv.empty();
   }
 
   function loadCreaturePage(){
@@ -70,7 +70,7 @@ console.log("sanity check: JS connected!");
 
   function loadProfile(newUser){
     console.log(newUser);
-    $('.userData').html("");
+    $('.userData').empty();
     $('.userData').append(`<p>${newUser.name}</p>`);
   }
 
