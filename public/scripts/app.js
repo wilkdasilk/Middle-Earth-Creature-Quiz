@@ -56,7 +56,7 @@ console.log("sanity check: JS connected!");
                 <div class="row">
                   <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" required></div>
                 </div>
-                <input type="hidden" name="creature" value="Hobbit">
+                <input type="hidden" name="creature" value="${creatureType.creatureType}">
                 <div class="row">
                   <div class="col-md-offset-3 col-md-3"><input type="submit"></div>
                 </div>
@@ -122,36 +122,35 @@ console.log("sanity check: JS connected!");
   	  		</div>
   	  		<p>${user.name}</p>
   	  		<p>${user.creature.creatureType}</p>
-  	  		<button>delete</button>
+  	  		<button class="deleteBtn">delete</button>
   	  		<button>edit</button>
   	  	</div>`
   	  	);
-
+      
+      //Deletes a user when delete button is clicked
+      $(".deleteBtn").on('click', function(event) {
+        $.ajax({
+          method: 'DELETE',
+          url: '/api/users/' + $(this).parent().data("user-id"),
+          success: deleteUserSuccess,
+          error: deleteUserError
+        });
+      });
     }
   }
 
 
+//Removes its profile from the page
+function deleteUserSuccess(json) {
+  var user = json;
+  var userId = user._id;
 
-// $('#albums').on('click', '.delete-album', handleDeleteAlbumClick);
+  $("[data-user-id=" + userId + "]").remove();
+}
 
-// // when a delete button for an album is clicked
-// function handleDeleteAlbumClick(e) {
-//   var albumId = $(this).parents('.album').data('album-id');
-//   console.log('someone wants to delete album id=' + albumId );
-//   $.ajax({
-//     url: '/api/albums/' + albumId,
-//     method: 'DELETE',
-//     success: handleDeleteAlbumSuccess
-//   });
-// }
-
-// // callback after DELETE /api/albums/:id
-// function handleDeleteAlbumSuccess(data) {
-//   var deletedAlbumId = data._id;
-//   console.log('removing the following album from the page:', deletedAlbumId);
-//   $('div[data-album-id=' + deletedAlbumId + ']').remove();
-// }
-
+function deleteUserError() {
+  console.log("user deleting error!");
+}
 
 
   //Appends the question and answer choices to the page
