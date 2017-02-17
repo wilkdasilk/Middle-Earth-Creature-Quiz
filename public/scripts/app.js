@@ -106,13 +106,14 @@ console.log("sanity check: JS connected!");
   	  			<img src="#">
   	  		</div>
   	  		<p>${user.name}</p>
-  	  		<p>${user.creature.creatureType}</p> 
+  	  		<p>${user.creature.creatureType}</p>
   	  		<button>delete</button>
   	  		<button>edit</button>
   	  	</div>`
   	  	);
+
     }
-  }  
+  }
 
 
 	// // when a delete button in the edit songs modal is clicked
