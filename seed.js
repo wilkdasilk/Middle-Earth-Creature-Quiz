@@ -33,7 +33,12 @@ sampleCreatures.push({
 	madlib: "Enter madlib here!!"
 });
 
-
+sampleCreatures.push({
+  imageUrl: "https://s-media-cache-ak0.pinimg.com/originals/10/db/c3/10dbc3ef1d58f4ff611ec9bfc650a3d2.jpg",
+  creatureType: "Human",
+  description: "Also know as the race of Men, humans are proud, ambitious creatures. They can be very courageous and take pride in strength and honor. However, they can get a bit power-hungry.",
+  madlib: "Enter madlib here!!"
+});
 
 
 //Template from Books App to remove previous list and rerender the new list
