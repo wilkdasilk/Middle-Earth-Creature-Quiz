@@ -45,6 +45,8 @@ app.get('/', function homepage (req, res) {
 
  app.post('/api/users', controllers.users.add);
 
+ app.put('/api/users/:id', controllers.users.update);
+
  app.delete('/api/users/:id', controllers.users.destroy);
 
 
