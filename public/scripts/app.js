@@ -101,7 +101,7 @@ console.log("sanity check: JS connected!");
     function renderUser(user) {
 
   	  $(".allUsers").append(
-  	  	`<div class="userOnPage">
+  	  	`<div class="userOnPage" data-user-id="${user._id}">
   	  		<div>
   	  			<img src="#">
   	  		</div>
@@ -113,6 +113,37 @@ console.log("sanity check: JS connected!");
   	  	);
     }
   }  
+
+
+	// // when a delete button in the edit songs modal is clicked
+	// function handleDeleteSongClick(e) {
+	//   e.preventDefault();  // this is a form!
+	//   var $thisButton = $(this);
+	//   var songId = $thisButton.data('song-id');
+	//   var albumId = $thisButton.closest('form').data('album-id');
+
+	//   var url = '/api/albums/' + albumId + '/songs/' + songId;
+	//   console.log('send DELETE ', url);
+	//   $.ajax({
+	//     method: 'DELETE',
+	//     url: url,
+	//     success: handleSongDeleteResponse
+	//   });
+	// }
+
+	// function handleSongDeleteResponse(data) {
+	//   console.log('handleSongDeleteResponse got ', data);
+	//   var songId = data._id;
+	//   var $formRow = $('form#' + songId);
+	//   // since albumId isn't passed to this function, we'll deduce it from the page
+	//   var albumId = $formRow.data('album-id');
+	//   // remove that song edit form from the page
+	//   $formRow.remove();
+	//   fetchAndReRenderAlbumWithId(albumId);
+	// }
+
+
+
 
   //Appends the question and answer choices to the page
   function loadQuestion(){
