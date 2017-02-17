@@ -50,6 +50,8 @@ console.log("sanity check: JS connected!");
           </div>
         </form>
       </div>
+      <div class="allUsers">
+      </div>
       `);
 
       var $form = $('form');
@@ -59,7 +61,7 @@ console.log("sanity check: JS connected!");
           method: 'POST',
           url: '/api/users',
           data: $form.serialize(),
-          success: loadProfile,
+          success: loadMainProfile,
           error: onError
         });
       });
@@ -71,13 +73,18 @@ console.log("sanity check: JS connected!");
     console.log(thrownError);
   }
 
-  function loadProfile(newUser){
+
+
+  function loadMainProfile(newUser){
     $('.userData').empty();
-    $('.userData').append(`<p>${newUser.name}</p>`);
+  	$('.userData').append(`<div class="userOnPage"><p>${newUser.name}</p></div>`)
+
+  	loadProfiles();
   }
 
-  
-	//GETS ALL User profiles and renders to page
+
+  //GETS ALL User profiles and renders to page
+  function loadProfiles() {
 	$.ajax({
       method: 'GET',
       url: '/api/users',
@@ -85,17 +92,17 @@ console.log("sanity check: JS connected!");
       error: onError
   	});
 
-  function renderMultipleUsers(users) {
-  	users.forEach(function(user) {
-      renderUser(user);
-    });
-  }
+  	function renderMultipleUsers(users) {
+  	  users.forEach(function(user) {
+        renderUser(user);
+      });
+    }
 
-  function renderUser(user) {
-  	console.log('rendering user', user);
-  }
+    function renderUser(user) {
 
-
+  	  $(".allUsers").append(`<p>${user.name}</p>`);
+    }
+  }  
 
   //Appends the question and answer choices to the page
   function loadQuestion(){
