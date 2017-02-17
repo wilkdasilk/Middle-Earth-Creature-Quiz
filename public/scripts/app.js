@@ -72,7 +72,6 @@ console.log("sanity check: JS connected!");
   }
 
   function loadProfile(newUser){
-    console.log(newUser);
     $('.userData').empty();
     $('.userData').append(`<p>${newUser.name}</p>`);
   }
