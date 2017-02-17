@@ -77,7 +77,7 @@ console.log("sanity check: JS connected!");
 
   function loadMainProfile(newUser){
     $('.userData').empty();
-  	$('.userData').append(`<div class="userOnPage"><p>${newUser.name}</p></div>`)
+  	$('.userData').append(`<p>${newUser.name}</p>`)
 
   	loadProfiles();
   }
@@ -100,7 +100,8 @@ console.log("sanity check: JS connected!");
 
     function renderUser(user) {
 
-  	  $(".allUsers").append(`<p>${user.name}</p>`);
+  	  $(".allUsers").append(
+  	  	`<div class="userOnPage"><p>${user.name}</p></div>`);
     }
   }  
 
