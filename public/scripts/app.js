@@ -2,7 +2,7 @@ console.log("sanity check: JS connected!");
 
   $(document).ready(function(){
 
-    var mainDiv = $('.container.main-content');
+    var $mainDiv = $('.container.main-content');
 
     var takeQuiz = $('button');
     takeQuiz.click(function(event){
@@ -12,11 +12,11 @@ console.log("sanity check: JS connected!");
 
 
   function clearPage(){
-    mainDiv.html("");
+    $mainDiv.html("");
   }
 
   function loadCreaturePage(){
-    mainDiv.append(`
+    $mainDiv.append(`
       <div class="creature">
         <img src='https://i.ytimg.com/vi/j-CtdZVZbcI/maxresdefault.jpg'>
         <h1>You are a HOBBIT!</h1>
@@ -25,37 +25,57 @@ console.log("sanity check: JS connected!");
       <div class="userData">
         <form>
           <div class="row">
-            <div class="col-md-offset-3 col-md-3"><label>Name</label></div><div class="col-md-3"><input type="text"></input></div>
+            <div class="col-md-offset-3 col-md-3"><label>Name</label></div><div class="col-md-3"><input type="text" name="name"></div>
           </div>
           <div class="row">
-            <div class="col-md-offset-3 col-md-3"><label>City</label></div><div class="col-md-3"><input type="text"></input></div>
+            <div class="col-md-offset-3 col-md-3"><label>City</label></div><div class="col-md-3"><input type="text" name="city"></div>
           </div>
           <div class="row">
-            <div class="col-md-offset-3 col-md-3"><label>Age</label></div><div class="col-md-3"><input type="text"></input></div>
+            <div class="col-md-offset-3 col-md-3"><label>Age</label></div><div class="col-md-3"><input type="text" name="age"></div>
           </div>
           <div class="row">
-            <div class="col-md-offset-3 col-md-3"><label>Gender</label></div><div class="col-md-3"><input type="radio" value="male">Male <input type="radio" value="female">Female</input></div>
+            <div class="col-md-offset-3 col-md-3"><label>Gender</label></div><div class="col-md-3"><input type="radio" value="male" name="gender">Male <input type="radio" value="female" name="gender">Female</div>
           </div>
           <div class="row">
-            <div class="col-md-offset-3 col-md-3"><label>Favorite Color</label></div><div class="col-md-3"><input type="text"></input></div>
+            <div class="col-md-offset-3 col-md-3"><label>Favorite Color</label></div><div class="col-md-3"><input type="text" name="favoriteColor"></div>
           </div>
           <div class="row">
-            <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text"></input></div>
+            <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood"></div>
           </div>
+          <input type="hidden" name="creature" value="Hobbit">
           <div class="row">
-            <div class="col-md-offset-3 col-md-3"><label>Weapon Name</label></div><div class="col-md-3"><input type="text"></input></div>
-          </div>
-          <input type="hidden" name="creature" value="hobbit"></input>
-          <div class="row">
-            <div class="col-md-offset-3 col-md-3"><input type="submit"></input></div>
+            <div class="col-md-offset-3 col-md-3"><input type="submit"></div>
           </div>
         </form>
       </div>
       `);
+      var $form = $('form');
+      $form.on('submit', function(event){
+        event.preventDefault();
+        $.ajax({
+          method: 'POST',
+          url: '/api/users',
+          data: $form.serialize(),
+          success: loadProfile,
+          error: onError
+        });
+      });
+  }
+
+  function onError(xhr, ajaxOptions, thrownError){
+    console.log(xhr);
+    console.log(ajaxOptions);
+    console.log(thrownError);
+  }
+
+  function loadProfile(newUser){
+    console.log(newUser);
+    $('.userData').html("");
+    $('.userData').append(`<p>${newUser.name}</p>`);
   }
 
   function loadQuestion(){
-    mainDiv.append(`
+    $mainDiv.append(`
 
       <h1>Which creature are you?</h1>
       <div class="row">

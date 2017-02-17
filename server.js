@@ -20,12 +20,15 @@ var controllers = require('./controllers');
 /**********
  * ROUTES *
  **********/
-
  app.get('/api', controllers.api.index);
+
+ app.get('/api/creatures', controllers.creatures.index);
 
  app.get('/api/users', controllers.users.index);
 
  app.get('/api/users/:id', controllers.users.search);
+
+ app.post('/api/users', controllers.users.add);
 
 /*
  * HTML Endpoints
