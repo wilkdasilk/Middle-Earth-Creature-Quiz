@@ -76,6 +76,27 @@ console.log("sanity check: JS connected!");
     $('.userData').append(`<p>${newUser.name}</p>`);
   }
 
+  
+	//GETS ALL User profiles and renders to page
+	$.ajax({
+      method: 'GET',
+      url: '/api/users',
+      success: renderMultipleUsers,
+      error: onError
+  	});
+
+  function renderMultipleUsers(users) {
+  	users.forEach(function(user) {
+      renderUser(user);
+    });
+  }
+
+  function renderUser(user) {
+  	console.log('rendering user', user);
+  }
+
+
+
   //Appends the question and answer choices to the page
   function loadQuestion(){
     $mainDiv.append(`
