@@ -106,13 +106,14 @@ console.log("sanity check: JS connected!");
   	  			<img src="#">
   	  		</div>
   	  		<p>${user.name}</p>
-  	  		<p>${user.creature.creatureType}</p> 
+  	  		<p>${user.creature.creatureType}</p>
   	  		<button>delete</button>
   	  		<button>edit</button>
   	  	</div>`
   	  	);
+
     }
-  }  
+  }
 
   //Appends the question and answer choices to the page
   function loadQuestion(){
