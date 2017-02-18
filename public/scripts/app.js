@@ -33,31 +33,31 @@ console.log("sanity check: JS connected!");
         if(creature.creatureType == creatureType){
           creatureType = creature;
            formHTML = `
-          <form>
-            <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Name</label></div><div class="col-md-3"><input type="text" name="name" id="form_name" required></div>
-            </div>
-            <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>City</label></div><div class="col-md-3"><input type="text" name="city" id="form_city" required></div>
-            </div>
-            <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Age</label></div><div class="col-md-3"><input type="text" name="age" id="form_age" required></div>
-            </div>
-            <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Gender</label></div><div class="col-md-3"><input type="radio" value="male" name="gender" id="form_male" required>Male <input type="radio" value="female" name="gender" id="form_female">Female</div>
-            </div>
-            <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Favorite Color</label></div><div class="col-md-3"><input type="text" name="favoriteColor" id="form_favoriteColor" required></div>
-            </div>
-            <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" id="form_favoriteFood" required></div>
-            </div>
-            <input type="hidden" name="creature" value="${creatureType.creatureType}">
-            <div class="row">
-              <div class="col-md-offset-3 col-md-3"><input id="formSubmit" type="submit"></div>
-            </div>
-          </form>
-          `;
+            <form>
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>Name</label></div><div class="col-md-3"><input type="text" name="name" id="form_name" required></div>
+              </div>
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>City</label></div><div class="col-md-3"><input type="text" name="city" id="form_city" required></div>
+              </div>
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>Age</label></div><div class="col-md-3"><input type="text" name="age" id="form_age" required></div>
+              </div>
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>Gender</label></div><div class="col-md-3"><input type="radio" value="male" name="gender" id="form_male" required>Male <input type="radio" value="female" name="gender" id="form_female">Female</div>
+              </div>
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>Favorite Color</label></div><div class="col-md-3"><input type="text" name="favoriteColor" id="form_favoriteColor" required></div>
+              </div>
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" id="form_favoriteFood" required></div>
+              </div>
+              <input type="hidden" name="creature" value="${creatureType.creatureType}">
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><input id="formSubmit" type="submit"></div>
+              </div>
+            </form>
+            `;
           $mainDiv.append(`
             <div class="creature">
               <img src='${creatureType.imageUrl}'>
@@ -71,17 +71,18 @@ console.log("sanity check: JS connected!");
             </div>
             `);
 
-            var $form = $('form');
-            $form.on('submit', function(event){
-              event.preventDefault();
-              $.ajax({
-                method: 'POST',
-                url: '/api/users',
-                data: $form.serialize(),
-                success: loadMainProfile,
-                error: onError
-              });
+          var $form = $('form');
+          $form.on('submit', function(event){
+            event.preventDefault();
+            $.ajax({
+              method: 'POST',
+              url: '/api/users',
+              data: $form.serialize(),
+              success: loadMainProfile,
+              error: onError
             });
+          });
+
         }
       });
     }
@@ -116,6 +117,15 @@ console.log("sanity check: JS connected!");
   	  users.forEach(function(user) {
         renderUser(user);
       });
+      //Deletes a user when delete button is clicked
+      $(".allUsers").on('click', '.deleteBtn', function(event) {
+        $.ajax({
+          method: 'DELETE',
+          url: '/api/users/' + $(this).parent().data("user-id"),
+          success: deleteUserSuccess,
+          error: deleteUserError
+        });
+      });
     }
 
     function renderUser(user) {
@@ -132,44 +142,34 @@ console.log("sanity check: JS connected!");
   	  	</div>`
   	  	);
 
-      //Deletes a user when delete button is clicked
-      $(".deleteBtn").on('click', function(event) {
-        $.ajax({
-          method: 'DELETE',
-          url: '/api/users/' + $(this).parent().data("user-id"),
-          success: deleteUserSuccess,
-          error: deleteUserError
-        });
-      });
-
-      //Opens modal when edit button is clicked
-      $(".editBtn").on('click', function(event) {
-        var currentUserId = $(this).parent().data('user-id');
-        $('#userModal').modal();
-        $('#userModal').data('user-id', currentUserId);
-        $('#modal-form-content').html(formHTML);
-        $('#form_name').val(user.name);
-        $('#form_city').val(user.city);
-        $('#form_age').val(user.age);
-        if (user.gender == "male"){
-          $('#form_male').prop("checked", true);
-        } else {
-          $('#form_female').prop("checked", true);
-        }
-        $('#form_favoriteColor').val(user.favoriteColor);
-        $('#form_favoriteFood').val(user.favoriteFood);
-        $('#formSubmit').remove();
-        $('#saveChangesBtn').click(function(event){
-          event.preventDefault();
-          $.ajax({
-            method: "PUT",
-            url: '/api/users/' + currentUserId,
-            data: $('form').serialize(),
-            success: updateSuccess,
-            error: onError
+        //Opens modal when edit button is clicked
+        $(".allUsers").on('click', '.editBtn', function(event) {
+          var currentUserId = $(this).parent().data('user-id');
+          $('#userModal').modal();
+          $('#userModal').data('user-id', currentUserId);
+          $('#modal-form-content').html(formHTML);
+          $('#form_name').val(user.name);
+          $('#form_city').val(user.city);
+          $('#form_age').val(user.age);
+          if (user.gender == "male"){
+            $('#form_male').prop("checked", true);
+          } else {
+            $('#form_female').prop("checked", true);
+          }
+          $('#form_favoriteColor').val(user.favoriteColor);
+          $('#form_favoriteFood').val(user.favoriteFood);
+          $('#formSubmit').remove();
+          $('#saveChangesBtn').click(function(event){
+            event.preventDefault();
+            $.ajax({
+              method: "PUT",
+              url: '/api/users/' + currentUserId,
+              data: $('form').serialize(),
+              success: updateSuccess,
+              error: onError
+            });
           });
-        })
-      });
+        });
     }
     function updateSuccess(updatedUser){
       $('#userModal').modal('hide');
