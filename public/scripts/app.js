@@ -171,13 +171,15 @@ console.log("sanity check: JS connected!");
         })
       });
     }
+    function updateSuccess(updatedUser){
+      $('#userModal').modal('hide');
+      console.log("updated Successfully");
+      $(`[data-user-id=${updatedUser._id}]`).remove();
+      renderUser(updatedUser);
+    }
   }
 
-function updateSuccess(updatedUser){
-  $('#userModal').modal('hide');
-  console.log("updated Successfully");
-  console.log(updatedUser);
-}
+
 
 
 //Removes its profile from the page
