@@ -5,7 +5,7 @@ console.log("sanity check: JS connected!");
     var $mainDiv = $('.container.main-content');
 
     //After button is clicked, the page clears and loads a question
-    var takeQuiz = $('button');
+    var takeQuiz = $('#takeQuiz');
     takeQuiz.click(function(event){
       clearPage();
       loadQuestion();
