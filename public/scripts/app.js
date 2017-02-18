@@ -175,6 +175,7 @@ console.log("sanity check: JS connected!");
       $('#userModal').modal('hide');
       console.log("updated Successfully");
       $(`[data-user-id=${updatedUser._id}]`).remove();
+      console.log(updatedUser);
       renderUser(updatedUser);
     }
   }
