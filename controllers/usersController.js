@@ -47,7 +47,6 @@ function add(req,res){
       if (err){
         return console.log("save error: ",err);
       }
-      console.log("saved", user.name);
       res.json(user);
     });
   });

@@ -17,6 +17,7 @@ console.log("sanity check: JS connected!");
   }
 
   var formHTML;
+  var currentUserId;
 
   //Appends the result and form to the page
   function loadCreaturePage(creatureType){
@@ -117,6 +118,7 @@ console.log("sanity check: JS connected!");
   	  users.forEach(function(user) {
         renderUser(user);
       });
+
       //Deletes a user when delete button is clicked
       $(".allUsers").on('click', '.deleteBtn', function(event) {
         $.ajax({
@@ -124,6 +126,43 @@ console.log("sanity check: JS connected!");
           url: '/api/users/' + $(this).parent().data("user-id"),
           success: deleteUserSuccess,
           error: deleteUserError
+        });
+      });
+
+      //Opens modal when edit button is clicked
+      $(".allUsers").on('click', '.editBtn', function(event) {
+        currentUserId = $(this).parent().data('user-id');
+        $('#userModal').modal();
+        $('#userModal').data('user-id', currentUserId);
+        $('#modal-form-content').html(formHTML);
+        $('#formSubmit').remove();
+        $.ajax({
+          method:"GET",
+          url: '/api/users/' +currentUserId,
+          success: populateForm,
+          error: onError
+        });
+        function populateForm(user){
+          $('#form_name').val(user.name);
+          $('#form_city').val(user.city);
+          $('#form_age').val(user.age);
+          if (user.gender == "male"){
+            $('#form_male').prop("checked", true);
+          } else {
+            $('#form_female').prop("checked", true);
+          }
+          $('#form_favoriteColor').val(user.favoriteColor);
+          $('#form_favoriteFood').val(user.favoriteFood);
+        }
+      });
+      $('#userModal').on('click', '#saveChangesBtn', function(event){
+        event.preventDefault();
+        $.ajax({
+          method: "PUT",
+          url: '/api/users/' + currentUserId,
+          data: $('form').serialize(),
+          success: updateSuccess,
+          error: onError
         });
       });
     }
@@ -141,41 +180,10 @@ console.log("sanity check: JS connected!");
   	  		<button class="editBtn">edit</button>
   	  	</div>`
   	  	);
-
-        //Opens modal when edit button is clicked
-        $(".allUsers").on('click', '.editBtn', function(event) {
-          var currentUserId = $(this).parent().data('user-id');
-          $('#userModal').modal();
-          $('#userModal').data('user-id', currentUserId);
-          $('#modal-form-content').html(formHTML);
-          $('#form_name').val(user.name);
-          $('#form_city').val(user.city);
-          $('#form_age').val(user.age);
-          if (user.gender == "male"){
-            $('#form_male').prop("checked", true);
-          } else {
-            $('#form_female').prop("checked", true);
-          }
-          $('#form_favoriteColor').val(user.favoriteColor);
-          $('#form_favoriteFood').val(user.favoriteFood);
-          $('#formSubmit').remove();
-          $('#saveChangesBtn').click(function(event){
-            event.preventDefault();
-            $.ajax({
-              method: "PUT",
-              url: '/api/users/' + currentUserId,
-              data: $('form').serialize(),
-              success: updateSuccess,
-              error: onError
-            });
-          });
-        });
     }
     function updateSuccess(updatedUser){
       $('#userModal').modal('hide');
-      console.log("updated Successfully");
       $(`[data-user-id=${updatedUser._id}]`).remove();
-      console.log(updatedUser);
       renderUser(updatedUser);
     }
   }
