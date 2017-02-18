@@ -123,10 +123,10 @@ console.log("sanity check: JS connected!");
   	  		<p>${user.name}</p>
   	  		<p>${user.creature.creatureType}</p>
   	  		<button class="deleteBtn">delete</button>
-  	  		<button>edit</button>
+  	  		<button class="editBtn">edit</button>
   	  	</div>`
   	  	);
-      
+
       //Deletes a user when delete button is clicked
       $(".deleteBtn").on('click', function(event) {
         $.ajax({
@@ -135,6 +135,13 @@ console.log("sanity check: JS connected!");
           success: deleteUserSuccess,
           error: deleteUserError
         });
+      });
+
+      $(".editBtn").on('click', function(event) {
+        console.log("clicked to edit");
+        var currentUserId = $(this).parent.data('user-id');
+        $('#userModal').data('user-id', currentUserId);
+        $('#userModal').modal();
       });
     }
   }
