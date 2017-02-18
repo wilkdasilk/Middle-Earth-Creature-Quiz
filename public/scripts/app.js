@@ -139,7 +139,7 @@ console.log("sanity check: JS connected!");
 
       $(".editBtn").on('click', function(event) {
         console.log("clicked to edit");
-        var currentUserId = $(this).parent.data('user-id');
+        var currentUserId = $(this).parent().data('user-id');
         $('#userModal').data('user-id', currentUserId);
         $('#userModal').modal();
       });
