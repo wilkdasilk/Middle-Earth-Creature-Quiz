@@ -35,22 +35,22 @@ console.log("sanity check: JS connected!");
            formHTML = `
           <form>
             <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Name</label></div><div class="col-md-3"><input type="text" name="name" required></div>
+              <div class="col-md-offset-3 col-md-3"><label>Name</label></div><div class="col-md-3"><input type="text" name="name" id="form_name" required></div>
             </div>
             <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>City</label></div><div class="col-md-3"><input type="text" name="city" required></div>
+              <div class="col-md-offset-3 col-md-3"><label>City</label></div><div class="col-md-3"><input type="text" name="city" id="form_city" required></div>
             </div>
             <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Age</label></div><div class="col-md-3"><input type="text" name="age" required></div>
+              <div class="col-md-offset-3 col-md-3"><label>Age</label></div><div class="col-md-3"><input type="text" name="age" id="form_age" required></div>
             </div>
             <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Gender</label></div><div class="col-md-3"><input type="radio" value="male" name="gender" required>Male <input type="radio" value="female" name="gender">Female</div>
+              <div class="col-md-offset-3 col-md-3"><label>Gender</label></div><div class="col-md-3"><input type="radio" value="male" name="gender" id="form_male" required>Male <input type="radio" value="female" name="gender" id="form_female">Female</div>
             </div>
             <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Favorite Color</label></div><div class="col-md-3"><input type="text" name="favoriteColor" required></div>
+              <div class="col-md-offset-3 col-md-3"><label>Favorite Color</label></div><div class="col-md-3"><input type="text" name="favoriteColor" id="form_favoriteColor" required></div>
             </div>
             <div class="row">
-              <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" required></div>
+              <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" id="form_favoriteFood" required></div>
             </div>
             <input type="hidden" name="creature" value="${creatureType.creatureType}">
             <div class="row">
@@ -145,9 +145,19 @@ console.log("sanity check: JS connected!");
       //Opens modal when edit button is clicked
       $(".editBtn").on('click', function(event) {
         var currentUserId = $(this).parent().data('user-id');
-        $('#userModal').data('user-id', currentUserId);
         $('#userModal').modal();
+        $('#userModal').data('user-id', currentUserId);
         $('#modal-form-content').html(formHTML);
+        $('#form_name').val(user.name);
+        $('#form_city').val(user.city);
+        $('#form_age').val(user.age);
+        if (user.gender == "male"){
+          $('#form_male').prop("checked", true);
+        } else {
+          $('#form_female').prop("checked", true);
+        }
+        $('#form_favoriteColor').val(user.favoriteColor);
+        $('#form_favoriteFood').val(user.favoriteFood);
         $('#formSubmit').remove();
         $('#saveChangesBtn').click(function(event){
           event.preventDefault();
