@@ -19,11 +19,11 @@
   </head>
 <body>
     <div class="container">
-      <div class="row"> 
+      <div class="row">
       	<div class="container main-content">
       	<h1>What Middle-Earth creature are you?</h1>
       	<button>Take Quiz!</button>
-      	</div> 
+      	</div>
       </div>
     </div>
 
@@ -37,66 +37,13 @@
             <h4 class="modal-title">Edit User</h4>
           </div>
           <div class="modal-body">
-
             <div id="modal-form-content">
-
-
-              <fieldset class='form-horizontal'>
-              <!-- User Name input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="name">Name</label>
-                <div class="col-md-4">
-                  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-                </div>
-              </div>
- 
-              <!-- User City input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="city">City</label>
-                <div class="col-md-4">
-                  <input id="city" name="city" type="text" placeholder="" class="form-control input-md" required="">
-                </div>
-              </div>
-
-              <!-- User Age input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="age">Age</label>
-                <div class="col-md-4">
-                  <input type="radio" value="male" name="gender" required>Male <input type="radio" value="female" name="gender">Female</div>
-              </div>
-
-              <!-- User Gender input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="city">Gender</label>
-                <div class="col-md-4">
-                  <input id="city" name="city" type="text" placeholder="" class="form-control input-md" required="">
-                </div>
-              </div>
-
-              <!-- User Color input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="color">Favorite Color</label>
-                <div class="col-md-4">
-                  <input id="color" name="color" type="text" placeholder="" class="form-control input-md" required="">
-                </div>
-              </div>
-
-              <!-- User Food input-->
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="food">Favorite Food</label>
-                <div class="col-md-4">
-                  <input id="food" name="food" type="text" placeholder="" class="form-control input-md" required="">
-                </div>
-              </div>
-            </fieldset>
-
-              
-            </div>
+          </div>
 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="saveSong">Save changes</button>
+            <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -105,14 +52,14 @@
 
 
     <!-- Edit Songs Modal -->
-    <div class="modal fade bs-modal-lg" id="editSongsModal" tabindex="-1" role="dialog" aria-labelledby="editSongsModalTitle">
+    <div class="modal fade bs-modal-lg" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editSongsModalTitle">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="editSongsModalTitle">Edit Song List</h4>
+            <h4 class="modal-title" id="editUserModalTitle">Edit Song List</h4>
           </div>
-          <div class="modal-body" id='editSongsModalBody'>
+          <div class="modal-body" id='editUserModalBody'>
             <p> REPLACE #editSongsModalBody </p>
           </div>
           <div class="modal-footer">
