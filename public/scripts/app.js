@@ -99,7 +99,11 @@ console.log("sanity check: JS connected!");
 
   function loadMainProfile(newUser){
     $('.userData').empty();
-  	$('.userData').append(`<p>${newUser.name}</p>`)
+  	$('.userData').append(`
+      <div class="madLib"
+        <p>Behold, ${newUser.name} the mighty ${newUser.creature.creatureType}!</p>
+      </div>
+      `);
 
   	loadProfiles();
   }
