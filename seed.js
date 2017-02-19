@@ -47,6 +47,13 @@ sampleCreatures.push({
   madlib: "Enter madlib here!!"
 });
 
+sampleCreatures.push({
+  imageUrl: "https://s-media-cache-ak0.pinimg.com/originals/f4/65/ec/f465ec9e89afacbabb9d8a051fe1b00e.jpg",
+  creatureType: "Dwarf",
+  description: "Kings under the mountain, these creatures are stout, stubborn, and strong. Not to mention a preoccupation with shiny things.",
+  madlib: "Enter madlib here!!"
+});
+
 
 
 
