@@ -102,6 +102,7 @@ console.log("sanity check: JS connected!");
   	$('.userData').append(`
       <div class="madLib"
         <p>Behold, ${newUser.name} the mighty ${newUser.creature.creatureType}!</p>
+        <p>${newUser.name} was a curious little fellow who one day went away from ${newUser.city}, left his/her ${newUser.favoriteFood} half eaten, grabbed his/her ${newUser.favoriteColor} cloak, and went on an adventure! Later on, ${newUser.name} regretted having left the half-eaten ${newUser.favoriteFood}.</p>
       </div>
       `);
 
@@ -146,6 +147,8 @@ console.log("sanity check: JS connected!");
           success: populateForm,
           error: onError
         });
+        
+        //Pre-populates the modal form with user's previous info
         function populateForm(user){
           $('#form_name').val(user.name);
           $('#form_city').val(user.city);
@@ -159,6 +162,8 @@ console.log("sanity check: JS connected!");
           $('#form_favoriteFood').val(user.favoriteFood);
         }
       });
+
+      //Updates user when save button is clicked
       $('#userModal').on('click', '#saveChangesBtn', function(event){
         event.preventDefault();
         $.ajax({
@@ -216,6 +221,10 @@ function deleteUserError() {
       <div class="row">
         <div class="option col-md-6" data-creature-type="Human">Hooman</div>
         <div class="option col-md-6" data-creature-type="Hobbit">Hobbit</div>
+        <div class="option col-md-6" data-creature-type="Elf">Elf</div>
+        <div class="option col-md-6" data-creature-type="Dwarf">Dwarf</div>
+        <div class="option col-md-6" data-creature-type="Wizard">Wizard</div>
+        <div class="option col-md-6" data-creature-type="Ent">Ent</div>
       </div>
 
     `);

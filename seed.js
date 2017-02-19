@@ -40,6 +40,34 @@ sampleCreatures.push({
   madlib: "Enter madlib here!!"
 });
 
+sampleCreatures.push({
+  imageUrl: "http://3.bp.blogspot.com/_HqZZZbDsO7I/S0JR-JOGcDI/AAAAAAAAAjI/gvC5eEv4sKo/s320/160306-bigthumbnail.jpg",
+  creatureType: "Elf",
+  description: "Tall, fair, and graceful, these creatures can also be fierce warriors. They are immortal, except when they are killed. So try not to die..",
+  madlib: "Enter madlib here!!"
+});
+
+sampleCreatures.push({
+  imageUrl: "https://s-media-cache-ak0.pinimg.com/originals/f4/65/ec/f465ec9e89afacbabb9d8a051fe1b00e.jpg",
+  creatureType: "Dwarf",
+  description: "Kings under the mountain, these creatures are stout, stubborn, and strong. Not to mention a preoccupation with shiny things.",
+  madlib: "Enter madlib here!!"
+});
+
+sampleCreatures.push({
+  imageUrl: "http://vignette2.wikia.nocookie.net/lotr/images/f/fd/Radagast_and_Gandalf_2.jpg",
+  creatureType: "Wizard",
+  description: "Wizards are long-lived and wise. They value knowledge and are very powerful.",
+  madlib: "Enter madlib here!!"
+});
+
+sampleCreatures.push({
+  imageUrl: "http://shabier.com/ent/ent-018.jpg",
+  creatureType: "Ent",
+  description: "Shepherds of the forest, these creatures look like trees and were created to protect the forests. Despite being slow in speech and patient beings, they are strong and can be deadly if angered.",
+  madlib: "Enter madlib here!!"
+});
+
 
 //Template from Books App to remove previous list and rerender the new list
 db.Creature.remove({}, function(err, creatures) {
