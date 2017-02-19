@@ -15,7 +15,9 @@ function index(req, res){
 
 //FIND one user by id and return as JSON
 function search(req,res){
-  db.User.findById(req.params.id, function(err, user){
+  db.User.findById(req.params.id)
+  .populate('creature')
+  .exec(function(err, user){
     if (err){
       console.log(err);
       res.sendStatus(204);
@@ -45,7 +47,6 @@ function add(req,res){
       if (err){
         return console.log("save error: ",err);
       }
-      console.log("saved", user.name);
       res.json(user);
     });
   });
@@ -76,7 +77,9 @@ function update(req, res) {
   db.User.update({_id: req.params.id}, updateData, {new:true}, function(err, confirmation){
     if (err){return console.log("error: ", err);}
     else {
-      db.User.findById(req.params.id, function(err, user){
+      db.User.findById(req.params.id)
+      .populate('creature')
+      .exec(function(err, user){
         if (err){return console.log("Error: ", err);}
         else {
           res.json(user);

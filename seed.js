@@ -54,7 +54,7 @@ db.Creature.remove({}, function(err, creatures) {
 
 
     db.User.remove({}, function(err, users){
-      console.log('removed all users');   
+      console.log('removed all users');
       sampleUsers.forEach(function (userData) {
         var user = new db.User({
           name: userData.name,
@@ -83,5 +83,3 @@ db.Creature.remove({}, function(err, creatures) {
 
   });
 });
-
-
