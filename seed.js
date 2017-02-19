@@ -40,6 +40,15 @@ sampleCreatures.push({
   madlib: "Enter madlib here!!"
 });
 
+sampleCreatures.push({
+  imageUrl: "http://3.bp.blogspot.com/_HqZZZbDsO7I/S0JR-JOGcDI/AAAAAAAAAjI/gvC5eEv4sKo/s320/160306-bigthumbnail.jpg",
+  creatureType: "Elf",
+  description: "Tall, fair, and graceful, these creatures can also be fierce warriors. They are immortal, except when they are killed. So try not to die..",
+  madlib: "Enter madlib here!!"
+});
+
+
+
 
 //Template from Books App to remove previous list and rerender the new list
 db.Creature.remove({}, function(err, creatures) {
