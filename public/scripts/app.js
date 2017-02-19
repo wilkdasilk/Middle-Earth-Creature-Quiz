@@ -147,6 +147,8 @@ console.log("sanity check: JS connected!");
           success: populateForm,
           error: onError
         });
+        
+        //Pre-populates the modal form with user's previous info
         function populateForm(user){
           $('#form_name').val(user.name);
           $('#form_city').val(user.city);
@@ -160,6 +162,8 @@ console.log("sanity check: JS connected!");
           $('#form_favoriteFood').val(user.favoriteFood);
         }
       });
+
+      //Updates user when save button is clicked
       $('#userModal').on('click', '#saveChangesBtn', function(event){
         event.preventDefault();
         $.ajax({
