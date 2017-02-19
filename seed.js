@@ -61,7 +61,12 @@ sampleCreatures.push({
   madlib: "Enter madlib here!!"
 });
 
-
+sampleCreatures.push({
+  imageUrl: "http://shabier.com/ent/ent-018.jpg",
+  creatureType: "Ent",
+  description: "Shepherds of the forest, these creatures look like trees and were created to protect the forests. Despite being slow in speech and patient beings, they are strong and can be deadly if angered.",
+  madlib: "Enter madlib here!!"
+});
 
 
 //Template from Books App to remove previous list and rerender the new list
