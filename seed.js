@@ -54,6 +54,13 @@ sampleCreatures.push({
   madlib: "Enter madlib here!!"
 });
 
+sampleCreatures.push({
+  imageUrl: "http://vignette2.wikia.nocookie.net/lotr/images/f/fd/Radagast_and_Gandalf_2.jpg",
+  creatureType: "Wizard",
+  description: "Wizards are long-lived and wise. They value knowledge and are very powerful.",
+  madlib: "Enter madlib here!!"
+});
+
 
 
 
