@@ -224,6 +224,8 @@ function deleteUserError() {
   //Appends the question and answer choices to the page
   function loadQuiz(){
     var i =0;
+    var HumanPts = 0, HobbitPts = 0, ElfPts = 0, DwarfPts = 0, WizardPts = 0, EntPts =0;
+
     var questions=[
       {
         q: "Which creature are you?",
@@ -259,12 +261,12 @@ function deleteUserError() {
 
       <h1>${questions[i].q}</h1>
       <div class="row">
-        <div class="option col-md-6" data-creature-type="Human">${questions[i].A}</div>
-        <div class="option col-md-6" data-creature-type="Hobbit">${questions[i].B}</div>
-        <div class="option col-md-6" data-creature-type="Elf">${questions[i].C}</div>
-        <div class="option col-md-6" data-creature-type="Dwarf">${questions[i].D}</div>
-        <div class="option col-md-6" data-creature-type="Wizard">${questions[i].E}</div>
-        <div class="option col-md-6" data-creature-type="Ent">${questions[i].F}</div>
+        <div class="option col-md-6" data-answer="A">${questions[i].A}</div>
+        <div class="option col-md-6" data-answer="B">${questions[i].B}</div>
+        <div class="option col-md-6" data-answer="C">${questions[i].C}</div>
+        <div class="option col-md-6" data-answer="D">${questions[i].D}</div>
+        <div class="option col-md-6" data-answer="E">${questions[i].E}</div>
+        <div class="option col-md-6" data-answer="F">${questions[i].F}</div>
       </div>
 
     `);
@@ -275,6 +277,25 @@ function deleteUserError() {
     //listen for choice
     $mainDiv.on('click', '.option', function(){
       //update scores
+      switch($(this).data('answer')){
+        case "A":
+          HumanPts++;
+          break;
+        case "B":
+          HobbitPts++;
+          break;
+        case "C":
+          ElfPts++;
+          break;
+        case "D":
+          DwarfPts++;
+          break;
+        case "E":
+          WizardPts++;
+          break;
+        case "F":
+          EntPts++;
+      };
       //load next question
       if(questions[i+1]){
         i++;
@@ -282,8 +303,43 @@ function deleteUserError() {
       }
       //or decide creatureType and load creature page
       else{
+        //decide creature result
+        var score = [HumanPts,HobbitPts,ElfPts,DwarfPts,WizardPts,EntPts];
+        var maxScore = Math.max(...score);
+        var maxIndices = [];
+        var creatureIndex;
+        var creatureType;
+        var idx = score.indexOf(maxScore);
+        while (idx != -1){
+          maxIndices.push(idx);
+          idx = score.indexOf(maxScore, idx+1);
+        };
+        if (maxIndices.length>1){
+          var randomMaxIndex = Math.floor(Math.random() * maxIndices.length);
+          creatureIndex = maxIndices[randomMaxIndex];
+        } else {
+          creatureIndex = maxIndices[0];
+        }
+        switch (creatureIndex){
+          case 0:
+            creatureType = "Human";
+            break;
+          case 1:
+            creatureType = "Hobbit";
+            break;
+          case 2:
+            creatureType = "Elf";
+            break;
+          case 3:
+            creatureType = "Dwarf";
+            break;
+          case 4:
+            creatureType = "Wizard";
+            break;
+          case 5:
+            creatureType = "Ent";
+        };
         clearPage();
-        var creatureType = $(this).data('creature-type');
         loadCreaturePage(creatureType);
       }
     });
