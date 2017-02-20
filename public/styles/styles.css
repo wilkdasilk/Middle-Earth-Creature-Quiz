@@ -35,3 +35,6 @@ input{
 .madlib {
   font-style: italic;
 }
+.option{
+  margin: 25px auto;
+}

@@ -8,7 +8,7 @@ console.log("sanity check: JS connected!");
     var takeQuiz = $('#takeQuiz');
     takeQuiz.click(function(event){
       clearPage();
-      loadQuestion();
+      loadQuiz();
     });
 
   //Function to clear the page
@@ -222,24 +222,70 @@ function deleteUserError() {
 
 
   //Appends the question and answer choices to the page
-  function loadQuestion(){
-    $mainDiv.append(`
+  function loadQuiz(){
+    var i =0;
+    var questions=[
+      {
+        q: "Which creature are you?",
+        A: "Hooman",
+        B: "Hobbit",
+        C: "Elf",
+        D: "Dwarf",
+        E: "Wizard",
+        F: "Ent"
+    },
+    {
+      q: "No seriously which creature are you?",
+      A: "real Hooman",
+      B: "real Hobbit",
+      C: "real Elf",
+      D: "real Dwarf",
+      E: "real Wizard",
+      F: "real Ent"
+    },
+    {
+      q: "But really which creature are you?",
+      A: "definitely Hooman",
+      B: "definitely Hobbit",
+      C: "definitely Elf",
+      D: "definitely Dwarf",
+      E: "definitely Wizard",
+      F: "definitely Ent"
+    }];
 
-      <h1>Which creature are you?</h1>
+    function loadQuestion(){
+      //ask question
+      $mainDiv.html(`
+
+      <h1>${questions[i].q}</h1>
       <div class="row">
-        <div class="option col-md-6" data-creature-type="Human">Hooman</div>
-        <div class="option col-md-6" data-creature-type="Hobbit">Hobbit</div>
-        <div class="option col-md-6" data-creature-type="Elf">Elf</div>
-        <div class="option col-md-6" data-creature-type="Dwarf">Dwarf</div>
-        <div class="option col-md-6" data-creature-type="Wizard">Wizard</div>
-        <div class="option col-md-6" data-creature-type="Ent">Ent</div>
+        <div class="option col-md-6" data-creature-type="Human">${questions[i].A}</div>
+        <div class="option col-md-6" data-creature-type="Hobbit">${questions[i].B}</div>
+        <div class="option col-md-6" data-creature-type="Elf">${questions[i].C}</div>
+        <div class="option col-md-6" data-creature-type="Dwarf">${questions[i].D}</div>
+        <div class="option col-md-6" data-creature-type="Wizard">${questions[i].E}</div>
+        <div class="option col-md-6" data-creature-type="Ent">${questions[i].F}</div>
       </div>
 
     `);
-    $('.option').click(function(){
-      clearPage();
-      var creatureType = $(this).data('creature-type');
-      loadCreaturePage(creatureType);
+    }
+
+    loadQuestion();
+
+    //listen for choice
+    $mainDiv.on('click', '.option', function(){
+      //update scores
+      //load next question
+      if(questions[i+1]){
+        i++;
+        loadQuestion();
+      }
+      //or decide creatureType and load creature page
+      else{
+        clearPage();
+        var creatureType = $(this).data('creature-type');
+        loadCreaturePage(creatureType);
+      }
     });
   }
 
