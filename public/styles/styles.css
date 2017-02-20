@@ -42,7 +42,7 @@ input{
   padding:25px;
   width:200px;
   height: 200px;
-  border: 2px black solid;
+  border: 2px white solid;
   background: rgba(0,255,50,.2);
   display:inline-block;
   text-align:center;
