@@ -188,7 +188,7 @@ console.log("sanity check: JS connected!");
         });
       });
     }
-
+    //Small profile of users
     function renderUser(user) {
 
   	  $(".allUsers").append(
