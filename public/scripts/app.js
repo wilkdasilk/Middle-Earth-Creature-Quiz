@@ -55,6 +55,9 @@ console.log("sanity check: JS connected!");
               <div class="row">
                 <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" id="form_favoriteFood" required></div>
               </div>
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>Weapon Name</label></div><div class="col-md-3"><input type="text" name="weaponName" id="form_weaponName" required></div>
+              </div>
               <input type="hidden" name="creature" value="${creatureResult.creatureType}">
               <div class="row">
                 <div class="col-md-offset-3 col-md-3"><input id="formSubmit" type="submit"></div>
@@ -237,23 +240,24 @@ function deleteUserError() {
         F: "Ent"
     },
     {
-      q: "No seriously which creature are you?",
-      A: "real Hooman",
-      B: "real Hobbit",
-      C: "real Elf",
-      D: "real Dwarf",
-      E: "real Wizard",
-      F: "real Ent"
+      q: "Where do you prefer to dwell?",
+      A: "I like the city.",
+      B: "In my comfy hole.",
+      C: "In the forest.",
+      D: "I'm a cave man.",
+      E: "I have no dwelling place.",
+      F: "Let me talk slower. In - the - forest."
     },
     {
-      q: "But really which creature are you?",
-      A: "definitely Hooman",
-      B: "definitely Hobbit",
-      C: "definitely Elf",
-      D: "definitely Dwarf",
-      E: "definitely Wizard",
-      F: "definitely Ent"
-    }];
+      q: "Choose your weapon!",
+      A: "Long sword",
+      B: "Frying pan",
+      C: "Bow and arrow",
+      D: "Battle axe or hammer",
+      E: "Quarter staff",
+      F: "I have no need for a weapon.."
+    }
+    ];
 
     function loadQuestion(){
       //ask question
