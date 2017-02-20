@@ -115,6 +115,10 @@ console.log("sanity check: JS connected!");
 
   //GETS ALL User profiles and renders to page
   function loadProfiles() {
+    //first clear all profiles and turn of event listeners so there won't be multiple
+    $(".allUsers").empty().off();
+
+    //then get info to load all profiles fresh
 	$.ajax({
       method: 'GET',
       url: '/api/users',
@@ -197,6 +201,7 @@ console.log("sanity check: JS connected!");
       $('#userModal').modal('hide');
       $(`[data-user-id=${updatedUser._id}]`).remove();
       renderUser(updatedUser);
+      loadMainProfile(updatedUser);
     }
   }
 
