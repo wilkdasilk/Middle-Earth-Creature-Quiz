@@ -64,10 +64,13 @@ console.log("sanity check: JS connected!");
               </div>
             </form>
             `;
+
+          var article = (creatureResult.creatureType == "Elf" || creatureResult.creatureType == "Ent" ? "an" : "a");
+
           $mainDiv.append(`
             <div class="creature">
               <img class="creatureImage" src='${creatureResult.imageUrl}'>
-              <h1>You are a ${creatureResult.creatureType}!</h1>
+              <h1>You are ${article} ${creatureResult.creatureType}!</h1>
               <p>${creatureResult.description}</p>
             </div>
             <div class="userData">
@@ -242,7 +245,7 @@ function deleteUserError() {
 
     function populateQuestions(questionsData){
       var questions = questionsData;
-      
+
       function loadQuestion(){
         var currentQ = questions[i];
         var ordKeyArr = ['A', 'B', 'C', 'D', 'E', 'F'];
