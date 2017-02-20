@@ -29,7 +29,7 @@ sampleUsers.push({
 var sampleCreatures = [];
 
 sampleCreatures.push({
-	imageUrl: "https://i.ytimg.com/vi/j-CtdZVZbcI/maxresdefault.jpg",
+	imageUrl: "images/hobbit.jpg",
 	creatureType: "Hobbit",
 	description: "Hobbits are small creatures that can be mistaken for young children. They love comfort and food and a good pipe. Although not accustomed to adventure, they can be both clever and surprisingly courageous, and also make great thieves as they are quiet and can sneak around unnoticed.",
 	madlib: ` <div class='madlib'>
@@ -38,7 +38,7 @@ sampleCreatures.push({
 });
 
 sampleCreatures.push({
-  imageUrl: "https://s-media-cache-ak0.pinimg.com/originals/10/db/c3/10dbc3ef1d58f4ff611ec9bfc650a3d2.jpg",
+  imageUrl: "images/human.jpg",
   creatureType: "Human",
   description: "Also know as the race of Men, humans are proud, ambitious creatures. They can be very courageous and take pride in strength and honor. However, they can get a bit power-hungry.",
   madlib: `<div class='madlib'>
@@ -47,7 +47,7 @@ sampleCreatures.push({
 });
 
 sampleCreatures.push({
-  imageUrl: "http://3.bp.blogspot.com/_HqZZZbDsO7I/S0JR-JOGcDI/AAAAAAAAAjI/gvC5eEv4sKo/s320/160306-bigthumbnail.jpg",
+  imageUrl: "images/elf.jpg",
   creatureType: "Elf",
   description: "Tall, fair, and graceful, these creatures can also be fierce warriors. They are immortal, except when they are killed. So try not to die..",
   madlib: `<div class='madlib'>
@@ -56,7 +56,7 @@ sampleCreatures.push({
 });
 
 sampleCreatures.push({
-  imageUrl: "https://s-media-cache-ak0.pinimg.com/originals/f4/65/ec/f465ec9e89afacbabb9d8a051fe1b00e.jpg",
+  imageUrl: "images/dwarf.jpg",
   creatureType: "Dwarf",
   description: "Kings under the mountain, these creatures are stout, stubborn, and strong. Not to mention a preoccupation with shiny things.",
   madlib: `<div class='madlib'>
@@ -65,7 +65,7 @@ sampleCreatures.push({
 });
 
 sampleCreatures.push({
-  imageUrl: "http://vignette2.wikia.nocookie.net/lotr/images/f/fd/Radagast_and_Gandalf_2.jpg",
+  imageUrl: "images/wizard.jpg",
   creatureType: "Wizard",
   description: "Wizards are long-lived and wise. They value knowledge and are very powerful.",
   madlib: `<div class='madlib'>
@@ -74,7 +74,7 @@ sampleCreatures.push({
 });
 
 sampleCreatures.push({
-  imageUrl: "http://shabier.com/ent/ent-018.jpg",
+  imageUrl: "images/ent.jpg",
   creatureType: "Ent",
   description: "Shepherds of the forest, these creatures look like trees and were created to protect the forests. Despite being slow in speech and patient beings, they are strong and can be deadly if angered.",
   madlib: `<div class='madlib'>
