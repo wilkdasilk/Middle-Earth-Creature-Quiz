@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/Project-01");
+mongoose.connect( process.env.MONGODB_URI || "https://desolate-wave-59412.herokuapp.com/" );
 
 var User = require('./user');
 var Creature = require('./creature');
