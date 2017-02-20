@@ -261,12 +261,12 @@ function deleteUserError() {
 
       <h1>${questions[i].q}</h1>
       <div class="row">
-        <div class="option col-md-6" data-answer="A">${questions[i].A}</div>
-        <div class="option col-md-6" data-answer="B">${questions[i].B}</div>
-        <div class="option col-md-6" data-answer="C">${questions[i].C}</div>
-        <div class="option col-md-6" data-answer="D">${questions[i].D}</div>
-        <div class="option col-md-6" data-answer="E">${questions[i].E}</div>
-        <div class="option col-md-6" data-answer="F">${questions[i].F}</div>
+        <div class="question option col-md-6" data-answer="A">${questions[i].A}</div>
+        <div class="question option col-md-6" data-answer="B">${questions[i].B}</div>
+        <div class="question option col-md-6" data-answer="C">${questions[i].C}</div>
+        <div class="question option col-md-6" data-answer="D">${questions[i].D}</div>
+        <div class="question option col-md-6" data-answer="E">${questions[i].E}</div>
+        <div class="question option col-md-6" data-answer="F">${questions[i].F}</div>
       </div>
 
     `);
