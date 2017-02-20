@@ -41,6 +41,8 @@ app.get('/', function homepage (req, res) {
 
  app.get('/api/users', controllers.users.index);
 
+ app.get('/api/questions', controllers.questions.index);
+
  app.get('/api/users/:id', controllers.users.search);
 
  app.post('/api/users', controllers.users.add);
@@ -48,6 +50,8 @@ app.get('/', function homepage (req, res) {
  app.put('/api/users/:id', controllers.users.update);
 
  app.delete('/api/users/:id', controllers.users.destroy);
+
+
 
 
 

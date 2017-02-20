@@ -229,133 +229,125 @@ function deleteUserError() {
     var i =0;
     var HumanPts = 0, HobbitPts = 0, ElfPts = 0, DwarfPts = 0, WizardPts = 0, EntPts =0;
 
-    var questions=[
-      {
-        q: "Which creature are you?",
-        A: "Hooman",
-        B: "Hobbit",
-        C: "Elf",
-        D: "Dwarf",
-        E: "Wizard",
-        F: "Ent"
-    },
-    {
-      q: "Where do you prefer to dwell?",
-      A: "I like the city.",
-      B: "In my comfy hole.",
-      C: "In the forest.",
-      D: "I'm a cave man.",
-      E: "I have no dwelling place.",
-      F: "Let me talk slower. In - the - forest."
-    },
-    {
-      q: "Choose your weapon!",
-      A: "Long sword",
-      B: "Frying pan",
-      C: "Bow and arrow",
-      D: "Battle axe or hammer",
-      E: "Quarter staff",
-      F: "I have no need for a weapon.."
-    }
-    ];
 
-    function loadQuestion(){
-      //ask question
-      $mainDiv.html(`
+    //to be assigned when question loads
+    var randKeyArr;
 
-      <h1>${questions[i].q}</h1>
-      <div class="row">
-        <div class="question option col-md-6" data-answer="A">${questions[i].A}</div>
-        <div class="question option col-md-6" data-answer="B">${questions[i].B}</div>
-        <div class="question option col-md-6" data-answer="C">${questions[i].C}</div>
-        <div class="question option col-md-6" data-answer="D">${questions[i].D}</div>
-        <div class="question option col-md-6" data-answer="E">${questions[i].E}</div>
-        <div class="question option col-md-6" data-answer="F">${questions[i].F}</div>
-      </div>
+    $.ajax({
+      method: 'GET',
+      url: '/api/questions',
+      success: populateQuestions,
+      error: onError
+    });
 
-    `);
-    }
-
-    loadQuestion();
-
-    //listen for choice
-    $mainDiv.on('click', '.option', function(){
-      //update scores
-      switch($(this).data('answer')){
-        case "A":
-          HumanPts++;
-          break;
-        case "B":
-          HobbitPts++;
-          break;
-        case "C":
-          ElfPts++;
-          break;
-        case "D":
-          DwarfPts++;
-          break;
-        case "E":
-          WizardPts++;
-          break;
-        case "F":
-          EntPts++;
-      };
+    function populateQuestions(questionsData){
+      var questions = questionsData;
       
-      //load next question
-      if(questions[i+1]){
-        i++;
-        loadQuestion();
+      function loadQuestion(){
+        var currentQ = questions[i];
+        var ordKeyArr = ['A', 'B', 'C', 'D', 'E', 'F'];
+        randKeyArr=_.shuffle(ordKeyArr);
+
+        //ask question
+        $mainDiv.html(`
+
+        <h1>${questions[i].q}</h1>
+        <div class="row">
+          <div class="option col-md-6" data-choice="0">${currentQ[randKeyArr[0]]}</div>
+          <div class="option col-md-6" data-choice="1">${currentQ[randKeyArr[1]]}</div>
+          <div class="option col-md-6" data-choice="2">${currentQ[randKeyArr[2]]}</div>
+          <div class="option col-md-6" data-choice="3">${currentQ[randKeyArr[3]]}</div>
+          <div class="option col-md-6" data-choice="4">${currentQ[randKeyArr[4]]}</div>
+          <div class="option col-md-6" data-choice="5">${currentQ[randKeyArr[5]]}</div>
+        </div>
+
+      `);
       }
 
-      //or decide creatureType and load creature page
-      else{
+      loadQuestion();
+      //listen for choice
+      $mainDiv.on('click', '.option', function(){
 
-        //decide creature result
-        var score = [HumanPts,HobbitPts,ElfPts,DwarfPts,WizardPts,EntPts];
-        var maxScore = Math.max(...score);
-        var maxIndices = [];
-        var creatureIndex;
-        var creatureType;
+        var choice = $(this).data('choice');
+        //lookup key in randomized array
+        var decodedChoice = randKeyArr[choice];
 
-        //find creature index
-        var idx = score.indexOf(maxScore);
-        while (idx != -1){
-          maxIndices.push(idx);
-          idx = score.indexOf(maxScore, idx+1);
+        //update scores
+        switch(decodedChoice){
+          case "A":
+            HumanPts++;
+            break;
+          case "B":
+            HobbitPts++;
+            break;
+          case "C":
+            ElfPts++;
+            break;
+          case "D":
+            DwarfPts++;
+            break;
+          case "E":
+            WizardPts++;
+            break;
+          case "F":
+            EntPts++;
         };
-        if (maxIndices.length>1){
-          var randomMaxIndex = Math.floor(Math.random() * maxIndices.length);
-          creatureIndex = maxIndices[randomMaxIndex];
-        } else {
-          creatureIndex = maxIndices[0];
+
+        //load next question
+        if(questions[i+1]){
+          i++;
+          loadQuestion();
         }
 
-        //translate creature index to creature type
-        switch (creatureIndex){
-          case 0:
-            creatureType = "Human";
-            break;
-          case 1:
-            creatureType = "Hobbit";
-            break;
-          case 2:
-            creatureType = "Elf";
-            break;
-          case 3:
-            creatureType = "Dwarf";
-            break;
-          case 4:
-            creatureType = "Wizard";
-            break;
-          case 5:
-            creatureType = "Ent";
-        };
+        //or decide creatureType and load creature page
+        else{
 
-        // clear page, load result
-        clearPage();
-        loadCreaturePage(creatureType);
-      }
-    });
+          //decide creature result
+          var score = [HumanPts,HobbitPts,ElfPts,DwarfPts,WizardPts,EntPts];
+          var maxScore = Math.max(...score);
+          var maxIndices = [];
+          var creatureIndex;
+          var creatureType;
+
+          //find creature index
+          var idx = score.indexOf(maxScore);
+          while (idx != -1){
+            maxIndices.push(idx);
+            idx = score.indexOf(maxScore, idx+1);
+          };
+          if (maxIndices.length>1){
+            var randomMaxIndex = Math.floor(Math.random() * maxIndices.length);
+            creatureIndex = maxIndices[randomMaxIndex];
+          } else {
+            creatureIndex = maxIndices[0];
+          }
+
+          //translate creature index to creature type
+          switch (creatureIndex){
+            case 0:
+              creatureType = "Human";
+              break;
+            case 1:
+              creatureType = "Hobbit";
+              break;
+            case 2:
+              creatureType = "Elf";
+              break;
+            case 3:
+              creatureType = "Dwarf";
+              break;
+            case 4:
+              creatureType = "Wizard";
+              break;
+            case 5:
+              creatureType = "Ent";
+          };
+
+          // clear page, load result
+          clearPage();
+          loadCreaturePage(creatureType);
+        }
+      });
+    }
   }
-
 });
