@@ -55,6 +55,9 @@ console.log("sanity check: JS connected!");
               <div class="row">
                 <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" id="form_favoriteFood" required></div>
               </div>
+              <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>Weapon Name</label></div><div class="col-md-3"><input type="text" name="weaponName" id="form_weaponName" required></div>
+              </div>
               <input type="hidden" name="creature" value="${creatureResult.creatureType}">
               <div class="row">
                 <div class="col-md-offset-3 col-md-3"><input id="formSubmit" type="submit"></div>
@@ -225,6 +228,7 @@ function deleteUserError() {
   function loadQuiz(){
     var i =0;
     var HumanPts = 0, HobbitPts = 0, ElfPts = 0, DwarfPts = 0, WizardPts = 0, EntPts =0;
+
 
     //to be assigned when question loads
     var randKeyArr;
