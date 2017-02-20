@@ -18,9 +18,11 @@ console.log("sanity check: JS connected!");
 
   var formHTML;
   var currentUserId;
+  var creatureResult;
+  var mainUser;
 
   //Appends the result and form to the page
-  function loadCreaturePage(creatureType){
+  function loadCreaturePage(result){
 
     $.ajax({
       method: "GET",
@@ -31,8 +33,8 @@ console.log("sanity check: JS connected!");
 
     function captureCreature(creatures){
       creatures.forEach(function(creature){
-        if(creature.creatureType == creatureType){
-          creatureType = creature;
+        if(creature.creatureType == result){
+          creatureResult = creature;
            formHTML = `
             <form>
               <div class="row">
@@ -53,7 +55,7 @@ console.log("sanity check: JS connected!");
               <div class="row">
                 <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" id="form_favoriteFood" required></div>
               </div>
-              <input type="hidden" name="creature" value="${creatureType.creatureType}">
+              <input type="hidden" name="creature" value="${creatureResult.creatureType}">
               <div class="row">
                 <div class="col-md-offset-3 col-md-3"><input id="formSubmit" type="submit"></div>
               </div>
@@ -61,9 +63,9 @@ console.log("sanity check: JS connected!");
             `;
           $mainDiv.append(`
             <div class="creature">
-              <img src='${creatureType.imageUrl}'>
-              <h1>You are a ${creatureType.creatureType}!</h1>
-              <p>${creatureType.description}</p>
+              <img src='${creatureResult.imageUrl}'>
+              <h1>You are a ${creatureResult.creatureType}!</h1>
+              <p>${creatureResult.description}</p>
             </div>
             <div class="userData">
               ${formHTML}
@@ -98,13 +100,14 @@ console.log("sanity check: JS connected!");
 
 
   function loadMainProfile(newUser){
+    mainUser = newUser;
+    if (mainUser.gender == "male"){
+      mainUser.pronoun = "his"
+    } else {
+      mainUser.pronoun = "her"
+    };
     $('.userData').empty();
-  	$('.userData').append(`
-      <div class="madLib"
-        <p>Behold, ${newUser.name} the mighty ${newUser.creature.creatureType}!</p>
-        <p>${newUser.name} was a curious little fellow who one day went away from ${newUser.city}, left his/her ${newUser.favoriteFood} half eaten, grabbed his/her ${newUser.favoriteColor} cloak, and went on an adventure! Later on, ${newUser.name} regretted having left the half-eaten ${newUser.favoriteFood}.</p>
-      </div>
-      `);
+  	$('.userData').append(eval('`' +creatureResult.madlib + '`'));
 
   	loadProfiles();
   }
@@ -147,7 +150,7 @@ console.log("sanity check: JS connected!");
           success: populateForm,
           error: onError
         });
-        
+
         //Pre-populates the modal form with user's previous info
         function populateForm(user){
           $('#form_name').val(user.name);

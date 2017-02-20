@@ -31,3 +31,7 @@ input{
   display:inline-block;
   text-align:center;
 }
+
+.madlib {
+  font-style: italic;
+}
