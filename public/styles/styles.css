@@ -4,6 +4,10 @@ body {
   background-position: relative;
 }
 
+.creatureImage {
+  border: 5px solid black;
+}
+
 .main-content{
   padding-top: 50px;
   text-align: center;

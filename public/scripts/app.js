@@ -63,7 +63,7 @@ console.log("sanity check: JS connected!");
             `;
           $mainDiv.append(`
             <div class="creature">
-              <img src='${creatureResult.imageUrl}'>
+              <img class="creatureImage" src='${creatureResult.imageUrl}'>
               <h1>You are a ${creatureResult.creatureType}!</h1>
               <p>${creatureResult.description}</p>
             </div>
