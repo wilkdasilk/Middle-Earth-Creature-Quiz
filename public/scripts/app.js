@@ -296,19 +296,24 @@ function deleteUserError() {
         case "F":
           EntPts++;
       };
+      
       //load next question
       if(questions[i+1]){
         i++;
         loadQuestion();
       }
+
       //or decide creatureType and load creature page
       else{
+
         //decide creature result
         var score = [HumanPts,HobbitPts,ElfPts,DwarfPts,WizardPts,EntPts];
         var maxScore = Math.max(...score);
         var maxIndices = [];
         var creatureIndex;
         var creatureType;
+
+        //find creature index
         var idx = score.indexOf(maxScore);
         while (idx != -1){
           maxIndices.push(idx);
@@ -320,6 +325,8 @@ function deleteUserError() {
         } else {
           creatureIndex = maxIndices[0];
         }
+
+        //translate creature index to creature type
         switch (creatureIndex){
           case 0:
             creatureType = "Human";
@@ -339,6 +346,8 @@ function deleteUserError() {
           case 5:
             creatureType = "Ent";
         };
+
+        // clear page, load result
         clearPage();
         loadCreaturePage(creatureType);
       }
