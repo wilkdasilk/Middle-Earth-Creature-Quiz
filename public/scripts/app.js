@@ -226,6 +226,9 @@ function deleteUserError() {
     var i =0;
     var HumanPts = 0, HobbitPts = 0, ElfPts = 0, DwarfPts = 0, WizardPts = 0, EntPts =0;
 
+    //to be assigned when question loads
+    var randKeyArr;
+
     var questions=[
       {
         q: "Which creature are you?",
@@ -256,17 +259,21 @@ function deleteUserError() {
     }];
 
     function loadQuestion(){
+      var currentQ = questions[i];
+      var ordKeyArr = ['A', 'B', 'C', 'D', 'E', 'F'];
+      randKeyArr=_.shuffle(ordKeyArr);
+
       //ask question
       $mainDiv.html(`
 
       <h1>${questions[i].q}</h1>
       <div class="row">
-        <div class="option col-md-6" data-answer="A">${questions[i].A}</div>
-        <div class="option col-md-6" data-answer="B">${questions[i].B}</div>
-        <div class="option col-md-6" data-answer="C">${questions[i].C}</div>
-        <div class="option col-md-6" data-answer="D">${questions[i].D}</div>
-        <div class="option col-md-6" data-answer="E">${questions[i].E}</div>
-        <div class="option col-md-6" data-answer="F">${questions[i].F}</div>
+        <div class="option col-md-6" data-choice="0">${currentQ[randKeyArr[0]]}</div>
+        <div class="option col-md-6" data-choice="1">${currentQ[randKeyArr[1]]}</div>
+        <div class="option col-md-6" data-choice="2">${currentQ[randKeyArr[2]]}</div>
+        <div class="option col-md-6" data-choice="3">${currentQ[randKeyArr[3]]}</div>
+        <div class="option col-md-6" data-choice="4">${currentQ[randKeyArr[4]]}</div>
+        <div class="option col-md-6" data-choice="5">${currentQ[randKeyArr[5]]}</div>
       </div>
 
     `);
@@ -276,8 +283,13 @@ function deleteUserError() {
 
     //listen for choice
     $mainDiv.on('click', '.option', function(){
+
+      var choice = $(this).data('choice');
+      //lookup key in randomized array
+      var decodedChoice = randKeyArr[choice];
+
       //update scores
-      switch($(this).data('answer')){
+      switch(decodedChoice){
         case "A":
           HumanPts++;
           break;
@@ -296,7 +308,7 @@ function deleteUserError() {
         case "F":
           EntPts++;
       };
-      
+
       //load next question
       if(questions[i+1]){
         i++;
