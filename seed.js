@@ -80,6 +80,37 @@ sampleCreatures.push({
 	 </div>`
 });
 
+var sampleQuestions = [];
+
+sampleQuestions.push({
+	q: "Which creature are you?",
+	A: "Hooman",
+	B: "Hobbit",
+	C: "Elf",
+	D: "Dwarf",
+	E: "Wizard",
+	F: "Ent"
+	});
+
+sampleQuestions.push({
+	q: "No seriously which creature are you?",
+	A: "real Hooman",
+	B: "real Hobbit",
+	C: "real Elf",
+	D: "real Dwarf",
+	E: "real Wizard",
+	F: "real Ent"
+	});
+
+sampleQuestions.push({
+	q: "But really which creature are you?",
+	A: "definitely Hooman",
+	B: "definitely Hobbit",
+	C: "definitely Elf",
+	D: "definitely Dwarf",
+	E: "definitely Wizard",
+	F: "definitely Ent"
+});
 
 //Template from Books App to remove previous list and rerender the new list
 db.Creature.remove({}, function(err, creatures) {
@@ -92,34 +123,46 @@ db.Creature.remove({}, function(err, creatures) {
     console.log('recreated all creatures');
     console.log("created", creatures.length, "creatures");
 
+		//seed questions
+		db.Question.remove({}, function(err, questions) {
+		  console.log('removed all questions');
+		  db.Question.create(sampleQuestions, function(err,questions){
+		    if (err) {
+		      console.log(err);
+		      return;
+		    }
+		    console.log('recreated all questions');
+		    console.log("created", questions.length, "questions");
 
-    db.User.remove({}, function(err, users){
-      console.log('removed all users');
-      sampleUsers.forEach(function (userData) {
-        var user = new db.User({
-          name: userData.name,
-          city: userData.city,
-		  age: userData.age,
-		  gender: userData.gender,
-		  favoriteColor: userData.favoriteColor,
-		  favoriteFood: userData.favoriteFood
-        });
-        db.Creature.findOne({creatureType: userData.creature}, function (err, foundCreature) {
-          console.log('found creature ' + foundCreature.creatureType + ' for user ' + user.name);
-          if (err) {
-            console.log(err);
-            return;
-          }
-          user.creature = foundCreature;
-          user.save(function(err, savedUser){
-            if (err) {
-              return console.log(err);
-            }
-            console.log('saved ' + savedUser.creature + ' by ' + foundCreature.creatureType);
-          });
-        });
-      });
-    });
-
+				//seed users
+		    db.User.remove({}, function(err, users){
+		      console.log('removed all users');
+		      sampleUsers.forEach(function (userData) {
+		        var user = new db.User({
+		          name: userData.name,
+		          city: userData.city,
+				  age: userData.age,
+				  gender: userData.gender,
+				  favoriteColor: userData.favoriteColor,
+				  favoriteFood: userData.favoriteFood
+		        });
+		        db.Creature.findOne({creatureType: userData.creature}, function (err, foundCreature) {
+		          console.log('found creature ' + foundCreature.creatureType + ' for user ' + user.name);
+		          if (err) {
+		            console.log(err);
+		            return;
+		          }
+		          user.creature = foundCreature;
+		          user.save(function(err, savedUser){
+		            if (err) {
+		              return console.log(err);
+		            }
+		            console.log('saved ' + savedUser.creature + ' by ' + foundCreature.creatureType);
+		          });
+		        });
+		      });
+		    });
+			});
+		});
   });
 });
