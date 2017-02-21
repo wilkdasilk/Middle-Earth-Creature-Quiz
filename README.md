@@ -19,3 +19,5 @@ This web-based application utilizes JavaScript, AJAX, Node.js, Express.js, Mongo
 For a full list of endpoints, please visit https://desolate-wave-59412.herokuapp.com/api.
 
 ## Planned Features
+
+A possible future feature is a button to embed your results to your personal page. 
