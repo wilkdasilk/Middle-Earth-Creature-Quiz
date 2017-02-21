@@ -20,4 +20,4 @@ For a full list of endpoints, please visit https://desolate-wave-59412.herokuapp
 
 ## Planned Features
 
-A possible future feature is a button to embed your results to your personal page. 
+Possible future features include a button to embed your results to your personal page and buttons to move forward and back during the quiz. 
