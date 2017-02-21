@@ -156,7 +156,7 @@ sampleQuestions.push({
 	F: "Turtle"
 });
 
-//Template from Books App to remove previous list and rerender the new list
+//Remove previous list and rerender the new list
 db.Creature.remove({}, function(err, creatures) {
   console.log('removed all creatures');
   db.Creature.create(sampleCreatures, function(err,creatures){
