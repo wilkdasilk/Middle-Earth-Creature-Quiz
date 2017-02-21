@@ -68,6 +68,9 @@ input{
   margin: 10px;
 }
 
+.editBtn:before   { content: "\270E"; }
+.deleteBtn:before { content: "\2718";}
+
 .question {
   font-size: 20px;
 }
