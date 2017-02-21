@@ -9,6 +9,7 @@ var UserSchema = new Schema({
 	favoriteColor: String,
 	favoriteFood: String,
 	weaponName: String,
+	imgUrl: String,
 	creature: {
     	type: Schema.Types.ObjectId,
     	ref: 'Creature'

@@ -30,6 +30,12 @@ function search(req,res){
 function add(req,res){
   var age = parseInt(req.body.age);
   req.body.age = age;
+  var lowImgUrl = req.body.imgUrl.toLowerCase();
+
+  //set default value for imgUrl if not provided a valid link
+  var userImgParse;
+  lowImgUrl.startsWith("http") || lowImgUrl.startsWith("www") ? userImgParse = req.body.imgUrl : userImgParse = '/images/userImgCatch.gif';
+
   var newUser = new db.User({
     name: req.body.name,
     city: req.body.city,
@@ -37,6 +43,7 @@ function add(req,res){
     gender: req.body.gender,
     favoriteColor: req.body.favoriteColor,
     favoriteFood: req.body.favoriteFood,
+    imgUrl: userImgParse,
     weaponName: req.body.weaponName
   });
   db.Creature.findOne({creatureType: req.body.creature}, function(err,creature){
@@ -60,6 +67,13 @@ function update(req, res) {
   //capture update data
   var age = parseInt(req.body.age);
   req.body.age = age;
+  var lowImgUrl = req.body.imgUrl.toLowerCase();
+
+
+  //set default value for imgUrl if not provided a valid link
+  var userImgParse;
+  lowImgUrl.startsWith("http") || lowImgUrl.startsWith("www") ? userImgParse = req.body.imgUrl : userImgParse = '/images/userImgCatch.gif';
+
   var updateData = {
     name: req.body.name,
     city: req.body.city,
@@ -67,6 +81,7 @@ function update(req, res) {
     gender: req.body.gender,
     favoriteColor: req.body.favoriteColor,
     favoriteFood: req.body.favoriteFood,
+    imgUrl: userImgParse,
     weaponName: req.body.weaponName
   };
   db.Creature.findOne({creatureType: req.body.creature}, function(err,creature){
