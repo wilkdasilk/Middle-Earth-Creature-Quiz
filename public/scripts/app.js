@@ -86,7 +86,7 @@ console.log("sanity check: JS connected!");
 
             //check if age is a number, and if not prompt user to enter a number
             if (isNaN(parseInt($('#form_age').val()))){
-              
+
               //if there's not already an error message, add an error message
               if($('.errorMessage').length == 0){
                 $('.row.age').after(function(){
@@ -192,13 +192,28 @@ console.log("sanity check: JS connected!");
       //Updates user when save button is clicked
       $('#userModal').on('click', '#saveChangesBtn', function(event){
         event.preventDefault();
-        $.ajax({
-          method: "PUT",
-          url: '/api/users/' + currentUserId,
-          data: $('form').serialize(),
-          success: updateSuccess,
-          error: onError
-        });
+
+        //check if age is a number, and if not prompt user to enter a number
+        if (isNaN(parseInt($('#form_age').val()))){
+
+          //if there's not already an error message, add an error message
+          if($('.errorMessage').length == 0){
+            $('.row.age').after(function(){
+              return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage"><p>*Please enter a number for Age</p></div></div>'
+            });
+          }
+        }
+
+        //if input types are good, submit form
+        else{
+          $.ajax({
+            method: "PUT",
+            url: '/api/users/' + currentUserId,
+            data: $('form').serialize(),
+            success: updateSuccess,
+            error: onError
+          });
+        }
       });
     }
     //Small profile of users
