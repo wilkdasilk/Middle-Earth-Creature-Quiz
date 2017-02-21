@@ -34,7 +34,7 @@ function add(req,res){
 
   //set default value for imgUrl if not provided a valid link
   var userImgParse;
-  lowImgUrl.startsWith("http") || lowImgUrl.startsWith("www") ? userImgParse = req.body.imgUrl : userImgParse = '/images/userImgCatch.gif';
+  lowImgUrl.startsWith("https") ? userImgParse = req.body.imgUrl : userImgParse = '/images/userImgCatch.gif';
 
   var newUser = new db.User({
     name: req.body.name,
@@ -72,7 +72,7 @@ function update(req, res) {
 
   //set default value for imgUrl if not provided a valid link
   var userImgParse;
-  lowImgUrl.startsWith("http") || lowImgUrl.startsWith("www") ? userImgParse = req.body.imgUrl : userImgParse = '/images/userImgCatch.gif';
+  lowImgUrl.startsWith("https") ? userImgParse = req.body.imgUrl : userImgParse = '/images/userImgCatch.gif';
 
   var updateData = {
     name: req.body.name,
