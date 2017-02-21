@@ -43,7 +43,7 @@ console.log("sanity check: JS connected!");
               <div class="row">
                 <div class="col-md-offset-3 col-md-3"><label>City</label></div><div class="col-md-3"><input type="text" name="city" id="form_city" required></div>
               </div>
-              <div class="row">
+              <div class="row age">
                 <div class="col-md-offset-3 col-md-3"><label>Age</label></div><div class="col-md-3"><input type="text" name="age" id="form_age" required></div>
               </div>
               <div class="row">
@@ -83,15 +83,25 @@ console.log("sanity check: JS connected!");
           var $form = $('form');
           $form.on('submit', function(event){
             event.preventDefault();
-            $.ajax({
-              method: 'POST',
-              url: '/api/users',
-              data: $form.serialize(),
-              success: loadMainProfile,
-              error: onError
-            });
-          });
 
+            //check if age is a number, and if not prompt user to enter a number
+            if (isNaN(parseInt($('#form_age').val()))){
+              console.log("please enter a number for age");
+              $('.row.age').after(function(){
+                return '<div class="row"><div class=" col-md-offset-6 col-md-6 errorMessage"><p>*Please enter a number for Age</p></div></div>'
+              });
+            }
+            //if input types are good, submit form
+            else {
+              $.ajax({
+                method: 'POST',
+                url: '/api/users',
+                data: $form.serialize(),
+                success: loadMainProfile,
+                error: onError
+              });
+            }
+          });
         }
       });
     }
