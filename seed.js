@@ -144,6 +144,16 @@ sampleQuestions.push({
 	F: "Planting trees"
 });
 
+sampleQuestions.push({
+	q: "What animal describes you?",
+	A: "Horse",
+	B: "Sloth",
+	C: "Swan",
+	D: "Bull",
+	E: "Owl",
+	F: "Turtle"
+});
+
 //Template from Books App to remove previous list and rerender the new list
 db.Creature.remove({}, function(err, creatures) {
   console.log('removed all creatures');
