@@ -86,10 +86,13 @@ console.log("sanity check: JS connected!");
 
             //check if age is a number, and if not prompt user to enter a number
             if (isNaN(parseInt($('#form_age').val()))){
-              console.log("please enter a number for age");
-              $('.row.age').after(function(){
-                return '<div class="row"><div class=" col-md-offset-6 col-md-6 errorMessage"><p>*Please enter a number for Age</p></div></div>'
-              });
+              
+              //if there's not already an error message, add an error message
+              if($('.errorMessage').length == 0){
+                $('.row.age').after(function(){
+                  return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage"><p>*Please enter a number for Age</p></div></div>'
+                });
+              }
             }
             //if input types are good, submit form
             else {
