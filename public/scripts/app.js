@@ -206,8 +206,7 @@ console.log("sanity check: JS connected!");
         event.preventDefault();
 
         var emptyFields = $('input:text').filter(function() { return this.value == ""; });
-        console.log($('input'));
-        console.log(emptyFields.length);
+
         //if there are empty fields, prompt to fill out all fields
         if (emptyFields.length != 0) {
 
