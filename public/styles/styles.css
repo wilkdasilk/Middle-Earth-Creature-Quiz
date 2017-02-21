@@ -43,9 +43,10 @@ input{
   width:200px;
   height: 200px;
   border: 2px white solid;
-  background: rgba(0,255,50,.2);
+  background: rgba(200,180,0,.2);
   display:inline-block;
   text-align:center;
+  margin: 10px;
 }
 
 .madlib {
@@ -63,7 +64,7 @@ input{
   font-weight:800;
 }
 
-#takeQuiz {
+#takeQuiz, .deleteBtn, .editBtn, .btn, #formSubmit {
   margin: 10px;
 }
 
