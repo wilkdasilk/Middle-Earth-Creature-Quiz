@@ -37,6 +37,11 @@ function index(req, res){
     method: "GET",
     path: "api/creatures",
     description: "returns all creatures"
+  },
+  {
+    method: "GET",
+    path: "api/questions",
+    description: "returns all questions"
   }]
   });
 };
