@@ -12,7 +12,7 @@ sampleUsers.push({
 	gender: "Male",
 	favoriteColor: "blue",
 	favoriteFood: "stew",
-	weaponName: "Steve",
+	weaponName: "Sting",
 	creature: "Hobbit"
 });
 sampleUsers.push({
@@ -114,6 +114,25 @@ sampleQuestions.push({
 	F: "I have no need for a weapon.."
 });
 
+sampleQuestions.push({
+	q: "What do you prize above all else?",
+	A: "Power",
+	B: "Comfort",
+	C: "Wisdom",
+	D: "Gold",
+	E: "Knowledge",
+	F: "Patience"
+});
+
+sampleQuestions.push({
+	q: "What is your hobby?",
+	A: "Breeding horses",
+	B: "Eating",
+	C: "Singing",
+	D: "Hoarding",
+	E: "Reading",
+	F: "Planting trees"
+});
 
 //Template from Books App to remove previous list and rerender the new list
 db.Creature.remove({}, function(err, creatures) {
