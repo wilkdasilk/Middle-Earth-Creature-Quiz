@@ -13,27 +13,6 @@ function index(req,res){
 }
 
 
-//POST 
-function create(req, res) {
-
-}
-
-
-//DELETE
-function destroy(req, res) {
-
-}
-
-
-//PUT
-function update(req, res) {
-
-}
-
-
 module.exports = {
-  index: index,
-  create: create,
-  update: update,
-  destroy: destroy
+  index: index
 };

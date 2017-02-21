@@ -41,6 +41,7 @@ function add(req,res){
   });
   db.Creature.findOne({creatureType: req.body.creature}, function(err,creature){
     if (err) {
+      res.sendStatus(404);
       return console.log(err)
     }
     newUser.creature = creature;
@@ -70,6 +71,7 @@ function update(req, res) {
   };
   db.Creature.findOne({creatureType: req.body.creature}, function(err,creature){
     if (err) {
+      res.sendStatus(400);
       return console.log(err)
     }
     updateData.creature = creature;
@@ -77,12 +79,18 @@ function update(req, res) {
   // find one user by id, update it based on request body,
   // and send it back as JSON
   db.User.update({_id: req.params.id}, updateData, {new:true}, function(err, confirmation){
-    if (err){return console.log("error: ", err);}
+    if (err){
+      res.sendStatus(400);
+      return console.log("error: ", err);
+    }
     else {
       db.User.findById(req.params.id)
       .populate('creature')
       .exec(function(err, user){
-        if (err){return console.log("Error: ", err);}
+        if (err){
+          res.sendStatus(500);
+          return console.log("Error: ", err);
+        }
         else {
           res.json(user);
         }
@@ -95,7 +103,10 @@ function update(req, res) {
 // DELETE one user by id and return as JSON
 function destroy(req, res) {
   db.User.findOneAndRemove({ _id: req.params.id }, function(err, foundUser){
-    if (err){return console.log("Error: ",err);}
+    if (err){
+      res.sendStatus(404);
+      return console.log("Error: ",err);
+    }
     else{
       res.json(foundUser);
     }
