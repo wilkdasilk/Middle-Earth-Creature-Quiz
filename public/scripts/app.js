@@ -215,23 +215,24 @@
 
         var emptyFields = $('input:text').filter(function() { return this.value == ""; });
 
-        //if there are empty fields, prompt to fill out all fields
-        if (emptyFields.length != 0) {
-
-          //if there's not already an error message for empty fields, add an error message
-          if($('.error1').length == 0){
-            $('.row.weaponName').after(function(){
-              return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage error1"><p>*Please fill out all fields</p></div></div>'
-            });
-          }
-        }
         //check if age is a number, and if not prompt user to enter a number
-        else if (isNaN(parseInt($('#form_age').val()))){
+         if (isNaN(parseInt($('#form_age').val()))){
 
           //if there's not already an error message for NaN, add an error message
           if($('.error2').length == 0){
             $('.row.age').after(function(){
               return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage error2"><p>*Please enter a number for Age</p></div></div>'
+            });
+          }
+        }
+
+        //if there are empty fields, prompt to fill out all fields
+        else if (emptyFields.length != 0) {
+
+          //if there's not already an error message for empty fields, add an error message
+          if($('.error1').length == 0){
+            $('.row.weaponName').after(function(){
+              return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage error1"><p>*Please fill out all fields</p></div></div>'
             });
           }
         }
