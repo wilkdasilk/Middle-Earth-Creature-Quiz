@@ -114,6 +114,7 @@ sampleQuestions.push({
 	F: "I have no need for a weapon.."
 });
 
+
 //Template from Books App to remove previous list and rerender the new list
 db.Creature.remove({}, function(err, creatures) {
   console.log('removed all creatures');
