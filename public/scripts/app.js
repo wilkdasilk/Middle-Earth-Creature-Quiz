@@ -164,7 +164,6 @@ console.log("sanity check: JS connected!");
 
       //Opens modal when edit button is clicked
       $(".allUsers").on('click', '.editBtn', function(event) {
-        console.log("how many clicks?");
 
         currentUserId = $(this).parent().data('user-id');
         $('#userModal').modal();
@@ -196,7 +195,6 @@ console.log("sanity check: JS connected!");
       //Updates user when save button is clicked
       $('#userModal').on('click', '#saveChangesBtn', function(event){
         event.preventDefault();
-        console.log("how many clicks?");
 
         //check if age is a number, and if not prompt user to enter a number
         if (isNaN(parseInt($('#form_age').val()))){
