@@ -85,13 +85,13 @@ sampleCreatures.push({
 var sampleQuestions = [];
 
 sampleQuestions.push({
-	q: "Which creature are you?",
-	A: "Hooman",
-	B: "Hobbit",
-	C: "Elf",
-	D: "Dwarf",
-	E: "Wizard",
-	F: "Ent"
+	q: "You find an injured rabbit. What do you do?",
+	A: "Nothing",
+	B: "Cook it and eat it",
+	C: "Nurse it back to health",
+	D: "Squash it",
+	E: "Heal it with magic",
+	F: "Set it free"
 	});
 
 sampleQuestions.push({
