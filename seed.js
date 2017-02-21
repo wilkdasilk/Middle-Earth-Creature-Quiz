@@ -115,6 +115,16 @@ sampleQuestions.push({
 });
 
 sampleQuestions.push({
+	q: "What were you doing 5 minutes ago?",
+	A: "Keeping watch",
+	B: "Smoking some pipe weed",
+	C: "Combing my beautiful hair",
+	D: "Drinking ale",
+	E: "Causing mischief",
+	F: "Watching the forest"
+});
+
+sampleQuestions.push({
 	q: "What do you prize above all else?",
 	A: "Power",
 	B: "Comfort",
