@@ -66,6 +66,7 @@ input{
 
 .madlib {
   font-style: italic;
+  font-size: 1.5em;
 }
 .option{
   margin: 25px auto;
