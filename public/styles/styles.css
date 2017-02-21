@@ -47,7 +47,9 @@ input{
   display:inline-block;
   text-align:center;
   margin: 10px;
+  position: relative;
 }
+
 .userImage{
   height: 160px;
   width:200px;
@@ -79,6 +81,26 @@ input{
 
 #takeQuiz, .deleteBtn, .editBtn, .btn, #formSubmit {
   margin: 10px;
+}
+
+.cornerBtn{
+  text-align: center;
+  background: white;
+  position:absolute;
+  top:0;
+  display: inline;
+  z-index: 10;
+  height:20px;
+  width:20px;
+  visibility: hidden;
+}
+
+.editBtn{
+  right:0;
+}
+
+.deleteBtn{
+  left:0;
 }
 
 .editBtn:before   { content: "\270E"; }

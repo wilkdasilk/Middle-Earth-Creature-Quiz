@@ -140,6 +140,8 @@ console.log("sanity check: JS connected!");
     //first clear all profiles and turn of event listeners so there won't be multiple
     $(".allUsers").empty();
     $('.allUsers').off('click', '.editBtn').off('click', '.deleteBtn');
+    $('.allUsers').off('mouseover', '.userOnPage');
+    $('.allUsers').off('mouseleave', '.userOnPage');
     $('#userModal').off('click', '#saveChangesBtn');
 
     //then get info to load all profiles fresh
@@ -153,6 +155,14 @@ console.log("sanity check: JS connected!");
   	function renderMultipleUsers(users) {
   	  users.forEach(function(user) {
         renderUser(user);
+      });
+
+      //toggle visibility on hover
+      $('.allUsers').on('mouseover', '.userOnPage', function(){
+        $(this).children('.cornerBtn').css('visibility', 'visible')
+      });
+      $('.allUsers').on('mouseleave', '.userOnPage', function(){
+        $(this).children('.cornerBtn').css('visibility', 'hidden')
       });
 
       //Deletes a user when delete button is clicked
@@ -250,8 +260,8 @@ console.log("sanity check: JS connected!");
   	  		</div>
   	  		<p>${user.name}</p>
   	  		<p>${user.creature.creatureType}</p>
-  	  		<button class="deleteBtn">delete</button>
-  	  		<button class="editBtn">edit</button>
+  	  		<div class="deleteBtn cornerBtn"></div>
+  	  		<div class="editBtn cornerBtn"></div>
   	  	</div>`
   	  	);
     }
@@ -262,9 +272,6 @@ console.log("sanity check: JS connected!");
       loadMainProfile(updatedUser);
     }
   }
-
-
-
 
 //Removes its profile from the page
 function deleteUserSuccess(json) {
