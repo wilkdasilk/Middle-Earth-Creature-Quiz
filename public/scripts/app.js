@@ -1,5 +1,3 @@
-console.log("sanity check: JS connected!");
-
   $(document).ready(function(){
 
     var $mainDiv = $('.container.main-content');
