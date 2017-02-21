@@ -86,10 +86,13 @@ console.log("sanity check: JS connected!");
 
             //check if age is a number, and if not prompt user to enter a number
             if (isNaN(parseInt($('#form_age').val()))){
-              console.log("please enter a number for age");
-              $('.row.age').after(function(){
-                return '<div class="row"><div class=" col-md-offset-6 col-md-6 errorMessage"><p>*Please enter a number for Age</p></div></div>'
-              });
+
+              //if there's not already an error message, add an error message
+              if($('.errorMessage').length == 0){
+                $('.row.age').after(function(){
+                  return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage"><p>*Please enter a number for Age</p></div></div>'
+                });
+              }
             }
             //if input types are good, submit form
             else {
@@ -132,7 +135,9 @@ console.log("sanity check: JS connected!");
   //GETS ALL User profiles and renders to page
   function loadProfiles() {
     //first clear all profiles and turn of event listeners so there won't be multiple
-    $(".allUsers").empty().off();
+    $(".allUsers").empty();
+    $('.allUsers').off('click', '.editBtn').off('click', '.deleteBtn');
+    $('#userModal').off('click', '#saveChangesBtn');
 
     //then get info to load all profiles fresh
 	$.ajax({
@@ -159,6 +164,8 @@ console.log("sanity check: JS connected!");
 
       //Opens modal when edit button is clicked
       $(".allUsers").on('click', '.editBtn', function(event) {
+        console.log("how many clicks?");
+
         currentUserId = $(this).parent().data('user-id');
         $('#userModal').modal();
         $('#userModal').data('user-id', currentUserId);
@@ -189,13 +196,29 @@ console.log("sanity check: JS connected!");
       //Updates user when save button is clicked
       $('#userModal').on('click', '#saveChangesBtn', function(event){
         event.preventDefault();
-        $.ajax({
-          method: "PUT",
-          url: '/api/users/' + currentUserId,
-          data: $('form').serialize(),
-          success: updateSuccess,
-          error: onError
-        });
+        console.log("how many clicks?");
+
+        //check if age is a number, and if not prompt user to enter a number
+        if (isNaN(parseInt($('#form_age').val()))){
+
+          //if there's not already an error message, add an error message
+          if($('.errorMessage').length == 0){
+            $('.row.age').after(function(){
+              return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage"><p>*Please enter a number for Age</p></div></div>'
+            });
+          }
+        }
+
+        //if input types are good, submit form
+        else{
+          $.ajax({
+            method: "PUT",
+            url: '/api/users/' + currentUserId,
+            data: $('form').serialize(),
+            success: updateSuccess,
+            error: onError
+          });
+        }
       });
     }
     //Small profile of users
