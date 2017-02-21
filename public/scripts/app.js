@@ -251,7 +251,7 @@ console.log("sanity check: JS connected!");
   	  		<p>${user.name}</p>
   	  		<p>${user.creature.creatureType}</p>
   	  		<button class="deleteBtn">delete</button>
-  	  		<button class="editBtn">edit</button>
+  	  		<button class="button icon edit editBtn">edit</button>
   	  	</div>`
   	  	);
     }
