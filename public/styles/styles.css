@@ -39,7 +39,7 @@ input{
 }
 
 .userOnPage{
-  padding:25px;
+  padding:0;
   width:200px;
   height: 200px;
   border: 2px white solid;
@@ -47,6 +47,19 @@ input{
   display:inline-block;
   text-align:center;
   margin: 10px;
+}
+.userImage{
+  height: 160px;
+  width:200px;
+  z-index: -1;
+  margin:0;
+}
+
+.userOnPage p{
+  width:100%;
+  background-color:white;
+  height:20px;
+  margin:0;
 }
 
 .madlib {

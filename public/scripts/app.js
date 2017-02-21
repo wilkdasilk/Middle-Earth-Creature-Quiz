@@ -50,12 +50,15 @@ console.log("sanity check: JS connected!");
                 <div class="col-md-offset-3 col-md-3"><label>Gender</label></div><div class="col-md-3"><input type="radio" value="male" name="gender" id="form_male" required>Male <input type="radio" value="female" name="gender" id="form_female">Female</div>
               </div>
               <div class="row">
+                <div class="col-md-offset-3 col-md-3"><label>Image URL</label></div><div class="col-md-3"><input type="text" name="imgUrl" id="form_imgUrl" required></div>
+              </div>
+              <div class="row">
                 <div class="col-md-offset-3 col-md-3"><label>Favorite Color</label></div><div class="col-md-3"><input type="text" name="favoriteColor" id="form_favoriteColor" required></div>
               </div>
               <div class="row">
                 <div class="col-md-offset-3 col-md-3"><label>Favorite Food</label></div><div class="col-md-3"><input type="text" name="favoriteFood" id="form_favoriteFood" required></div>
               </div>
-              <div class="row">
+              <div class="row weaponName">
                 <div class="col-md-offset-3 col-md-3"><label>Weapon Name</label></div><div class="col-md-3"><input type="text" name="weaponName" id="form_weaponName" required></div>
               </div>
               <input type="hidden" name="creature" value="${creatureResult.creatureType}">
@@ -170,6 +173,7 @@ console.log("sanity check: JS connected!");
         $('#userModal').data('user-id', currentUserId);
         $('#modal-form-content').html(formHTML);
         $('#formSubmit').remove();
+
         $.ajax({
           method:"GET",
           url: '/api/users/' +currentUserId,
@@ -189,6 +193,11 @@ console.log("sanity check: JS connected!");
           }
           $('#form_favoriteColor').val(user.favoriteColor);
           $('#form_favoriteFood').val(user.favoriteFood);
+          $('#form_weaponName').val(user.weaponName);
+          if (user.imgUrl != "/images/userImgCatch.gif"){
+            $('#form_imgUrl').val(user.imgUrl);
+          }
+
         }
       });
 
@@ -196,13 +205,26 @@ console.log("sanity check: JS connected!");
       $('#userModal').on('click', '#saveChangesBtn', function(event){
         event.preventDefault();
 
-        //check if age is a number, and if not prompt user to enter a number
-        if (isNaN(parseInt($('#form_age').val()))){
+        var emptyFields = $('input:text').filter(function() { return this.value == ""; });
+        console.log($('input'));
+        console.log(emptyFields.length);
+        //if there are empty fields, prompt to fill out all fields
+        if (emptyFields.length != 0) {
 
-          //if there's not already an error message, add an error message
-          if($('.errorMessage').length == 0){
+          //if there's not already an error message for empty fields, add an error message
+          if($('.error1').length == 0){
+            $('.row.weaponName').after(function(){
+              return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage error1"><p>*Please fill out all fields</p></div></div>'
+            });
+          }
+        }
+        //check if age is a number, and if not prompt user to enter a number
+        else if (isNaN(parseInt($('#form_age').val()))){
+
+          //if there's not already an error message for NaN, add an error message
+          if($('.error2').length == 0){
             $('.row.age').after(function(){
-              return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage"><p>*Please enter a number for Age</p></div></div>'
+              return '<div class="row"><div class="col-md-offset-6 col-md-6 errorMessage error2"><p>*Please enter a number for Age</p></div></div>'
             });
           }
         }
@@ -225,7 +247,7 @@ console.log("sanity check: JS connected!");
   	  $(".allUsers").append(
   	  	`<div class="userOnPage" data-user-id="${user._id}">
   	  		<div>
-  	  			<img src="#">
+  	  			<img class="userImage" src="${user.imgUrl}">
   	  		</div>
   	  		<p>${user.name}</p>
   	  		<p>${user.creature.creatureType}</p>

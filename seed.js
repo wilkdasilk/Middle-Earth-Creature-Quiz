@@ -12,6 +12,7 @@ sampleUsers.push({
 	gender: "Male",
 	favoriteColor: "blue",
 	favoriteFood: "stew",
+	imgUrl: "https://wherethedogstarrages.files.wordpress.com/2015/11/frodo.jpg",
 	weaponName: "Sting",
 	creature: "Hobbit"
 });
@@ -22,6 +23,7 @@ sampleUsers.push({
 	gender: "Male",
 	favoriteColor: "yellow",
 	favoriteFood: "bread",
+	imgUrl: "https://d.wattpad.com/story_parts/94475790/images/13b7eba08cb5ac10.jpg",
 	weaponName: "Betty",
 	creature: "Hobbit"
 });
@@ -183,10 +185,12 @@ db.Creature.remove({}, function(err, creatures) {
 		        var user = new db.User({
 		          name: userData.name,
 		          city: userData.city,
-				  age: userData.age,
-				  gender: userData.gender,
-				  favoriteColor: userData.favoriteColor,
-				  favoriteFood: userData.favoriteFood
+						  age: userData.age,
+						  gender: userData.gender,
+						  favoriteColor: userData.favoriteColor,
+						  favoriteFood: userData.favoriteFood,
+							imgUrl: userData.imgUrl,
+							weaponName: userData.weaponName
 		        });
 		        db.Creature.findOne({creatureType: userData.creature}, function (err, foundCreature) {
 		          console.log('found creature ' + foundCreature.creatureType + ' for user ' + user.name);
