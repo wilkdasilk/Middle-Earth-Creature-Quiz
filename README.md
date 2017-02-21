@@ -2,7 +2,9 @@
 
 ## Overview
 
-This Tolkien Creature Quiz is created by Regelyn Cacho and Auston Wilkinson as part of General Assembly's Web Development Immersive program.
+![Main profile with form screenshot](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+This Middle-Earth Creature Quiz is created by Regelyn Cacho and Auston Wilkinson as part of General Assembly's Web Development Immersive program.
 
 Take the quiz to learn what kind of creature you are! Then, enter your information to access a personalized madlib. Edit your information and see other's results.
 
