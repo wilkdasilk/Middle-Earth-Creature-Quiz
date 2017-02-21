@@ -85,13 +85,13 @@ sampleCreatures.push({
 var sampleQuestions = [];
 
 sampleQuestions.push({
-	q: "Which creature are you?",
-	A: "Hooman",
-	B: "Hobbit",
-	C: "Elf",
-	D: "Dwarf",
-	E: "Wizard",
-	F: "Ent"
+	q: "You find an injured rabbit. What do you do?",
+	A: "Nothing",
+	B: "Cook it and eat it",
+	C: "Nurse it back to health",
+	D: "Squash it",
+	E: "Heal it with magic",
+	F: "Set it free"
 	});
 
 sampleQuestions.push({
@@ -115,6 +115,16 @@ sampleQuestions.push({
 });
 
 sampleQuestions.push({
+	q: "What were you doing 5 minutes ago?",
+	A: "Keeping watch",
+	B: "Smoking some pipe weed",
+	C: "Combing my beautiful hair",
+	D: "Drinking ale",
+	E: "Causing mischief",
+	F: "Watching the forest"
+});
+
+sampleQuestions.push({
 	q: "What do you prize above all else?",
 	A: "Power",
 	B: "Comfort",
@@ -132,6 +142,16 @@ sampleQuestions.push({
 	D: "Hoarding",
 	E: "Reading",
 	F: "Planting trees"
+});
+
+sampleQuestions.push({
+	q: "What animal describes you?",
+	A: "Horse",
+	B: "Sloth",
+	C: "Swan",
+	D: "Bull",
+	E: "Owl",
+	F: "Turtle"
 });
 
 //Template from Books App to remove previous list and rerender the new list
