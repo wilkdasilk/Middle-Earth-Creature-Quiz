@@ -2,7 +2,7 @@
 
 ## Overview
 
-![Main profile with form screenshot](https://github.com/rccacho/Project-01/blob/layout/public/images/profile-form-screenshot.png?raw=true "Profile Screenshot")
+![Main profile with form screenshot](https://raw.githubusercontent.com/rccacho/Project-01/master/public/images/profile-form-screenshot.png "Profile Screenshot")
 
 This Middle-Earth Creature Quiz is created by Regelyn Cacho and Auston Wilkinson as part of General Assembly's Web Development Immersive program.
 
