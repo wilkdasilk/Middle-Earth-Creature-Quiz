@@ -1,4 +1,4 @@
-# Project-01
+# Middle-Earth Creature Quiz
 
 ## Overview
 
